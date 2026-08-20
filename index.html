@@ -1,0 +1,308 @@
+<!DOCTYPE HTML><head>
+        <title>Neontech starter kit UI | Browser client for starter kit</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/tailwind.min.css">
+        <link rel="stylesheet" href="css/all.min.css">
+        <link rel="stylesheet" href="css/page.css">
+        <script src="js/ripples.js"></script>
+        <script src="js/utils.js"></script>
+        <script>
+let debug=/debug/.test(location.search), slice=arr=>[].slice.call(arr), qsa=str=>slice(document.querySelectorAll(str)),
+    uuid   = (a) => (a ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid)),
+page = {
+  templates: [`<span class="font-semibold text-pink-500 inline-block mb-1">SELECT</span>
+  table_cell_id, 
+  <span class="inline-block my-1 font-semibold text-pink-500">first_field</span>
+<span class="font-semibold text-pink-500 inline-block my-1">FROM</span>
+  table_name
+<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span>
+  table_cell_id = <span class="font-semibold text-blue-400 inline-block">1</span>;`,
+`<span class="font-semibold text-pink-500 inline-block mb-1">UPDATE</span> table_name
+<span class="inline-block my-1 font-semibold text-pink-500">SET</span> first_field  = second_field
+<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span> table_cell_id = 3
+<span class="font-semibold text-pink-500 inline-block my-1">RETURNING</span> *;`,
+`<span class="font-semibold text-pink-500 mb-2 inline-block">INSERT INTO</span> table_name (<span class="font-semibold text-pink-500 mb-2 inline-block">first_field, second_field</span>)
+<span class="font-semibold text-pink-500">VALUES</span>
+  (<span class="text-green-500 mb-2 inline-block">'Value one', '08-06-2024'</span>),
+  (<span class="text-green-500 mb-2 inline-block">'Value three', '12-01-2023'</span>),
+  (<span class="text-green-500 mb-2 inline-block">'Value five', '10-12-2020'</span>)
+<span class="font-semibold text-pink-500 mb-2 inline-block">RETURNING</span> *;`,
+`<span class="font-semibold text-pink-500 mb-2 inline-block">ALTER TABLE</span> table_name
+<span class="font-semibold text-pink-500">ADD COLUMN</span> table_cell_id <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="7" value="SERIAL" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500"></label> <span class="font-semibold text-pink-500">PRIMARY KEY</span>;`,
+
+`<span class="font-semibold text-pink-500">CREATE TABLE</span> table_name (<br>
+  table_cell_id <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="7" value="SERIAL" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label> PRIMARY <span class="font-semibold text-pink-500">KEY</span>,
+  first_field  <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="14" value="VARCHAR(255)" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label><span class="font-semibold text-pink-500"> NOT </span><span class="font-semibold text-blue-400">NULL</span>,
+  second_field <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="5" value="DATE" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label><span class="font-semibold text-pink-500"> NOT </span><span class="font-semibold text-blue-400">NULL</span>
+);`,
+`<span class="font-semibold text-pink-500 mb-2 inline-block">ALTER TABLE</span> table_name
+<span class="font-semibold text-pink-500">DROP CONSTRAINT</span> table_cell_id;`],
+asText: function(node, inputs, txt='', cb) {
+    (cb=(nodes, flag, bool)=>slice(nodes).forEach(ch=>{
+      txt += (bool = ch.data || ch.value || ''),
+      !bool&&ch.childNodes.length&&cb(ch.childNodes, !0)
+    }))(node.childNodes);
+
+    txt=txt.replace(/\n+/g, ' ').trim(), txt=txt+';'.repeat(!/;$/.test(txt)),
+    account.query.value = txt;
+    return txt
+  }
+};
+</script>
+
+<style>
+.bg-near-black {
+  background: #282828;
+}
+.affix {
+  position: fixed;
+  top: 1em;
+}
+.input-sizer::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+}
+
+[disabled] {
+  pointer-events: auto;
+  cursor: not-allowed;
+}
+
+.dots-1 {
+  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+  background: 
+    var(--_g) 0    0,
+    var(--_g) 0    100%,
+    var(--_g) 100% 100%;
+  background-size: 40% 40%;
+  animation:d1 1s infinite linear;
+}
+@keyframes d1 {
+    25% {background-position:100% 0   ,0 100%,100% 100%}
+    50% {background-position:100% 0   ,0 0   ,100% 100%}
+    75% {background-position:100% 0   ,0 0   ,0    100%}
+    100%{background-position:100% 100%,0 0   ,0    100%}
+}
+    html {
+    scroll-behavior: smooth;
+}
+@keyframes anim-round { 0%,100% { transform: translate3d(var(--_reach), 0px, 0px); } 25% { transform: translate3d(0px, var(--_reach), 0px); } 50% { transform: translate3d(var(--reach), 0px, 0px); } 75% { transform: translate3d(0px, var(--reach), 0px); } }
+.bg-squiggle {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 3' enable-background='new 0 0 6 3' width='6' height='3' fill='%23facc15'%3e%3cpolygon points='5.5%2c0 2.5%2c3 1.1%2c3 4.1%2c0'/%3e%3cpolygon points='4%2c0 6%2c2 6%2c0.6 5.4%2c0'/%3e%3cpolygon points='0%2c2 1%2c3 2.4%2c3 0%2c0.6'/%3e%3c/svg%3e");
+}
+.draw-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-stroke 1s ease-out infinite alternate;
+}
+@keyframes draw-stroke {
+    0% {
+    stroke-dashoffset: 1;
+}
+
+100% {
+    stroke-dashoffset: 0;
+}
+    }
+@font-face {
+    font-family: 'Capsmall_clean';
+    font-style: normal;
+    font-weight: normal;
+    src: local('fonts/Capsmall_clean'), url('fonts/Capsmall_clean.woff') format('woff');
+		}
+    .font-capture {
+      font-family: Capsmall_clean;
+    }
+    *:hover > .decorate > div, chrome .decorate-parent:hover > .decorate > div {
+                --tw-scale-x: 8;
+                --tw-scale-y: 8;
+                transform: scale3d(var(--tw-scale-x),var(--tw-scale-y),1);
+                --tw-bg-opacity: 0.15;
+            }
+
+            * > .decorate.out > div, .decorate-parent > .decorate.out > div {
+                --tw-scale-x: 8;
+                --tw-scale-y: 8;
+            }
+
+            *:hover > .decorate.out > div, .decorate-parent:hover > .decorate.out > div {
+                --tw-scale-x: 1;
+                --tw-scale-y: 1
+            }
+        </style>
+    </head>
+    <body>
+      <a href="https://neon.tech/docs/get-started-with-neon/production-checklist" class="font-bookweb text-lg fixed top-0 left-0 right-0 bg-green-100 p-2 block text-center underline">Getting ready for production? Explore Neon.tech features</a>
+      <section class="mt-10 p-10 md:w-4/5 m-auto border-r sm:border-gray-300 border-l">
+        <div class="absolute top-10 m-2 right-0">
+          <p class="bg-white z-1 relative p-1 text-sm rounded-tr-lg"><i class="fa fa-code text-gray-500"></i> attributions</p>
+          <div style="z-index: auto;" class="pt-8 text-sm p-4 bg-gray-200 right-0 top-0 shadow tooltip absolute rounded-lg w-40">
+            <i class="inline-block p-2 dots-1 text-gray-600"></i> • <a target="_blank" href="https://css-tricks.com/single-element-loaders-the-dots/">Temani Afif</a>
+            <hr class="my-2">
+            <label class="switch" style="--slider-checked-color:gray;--switch-size:12px;"><span class="slider"></span></label> • <a target="_blank" href="https://uiverse.io/profile/Voxybuns">Voxybuns</a>
+          </div>
+        </div>
+        <i class="fa fa-database text-xl text-gray-600 mr-3"></i><code class="skeleton p-1 rounded-full font-semibold">database</code>
+        <p class="my-2 py-3 skeleton italic rounded-full"></p>
+        <form id="account" target="response" method="POST" action="api/accountData" onsubmit="return false;" class='align-middle inline-block mr-56 mb-6'>
+          <input type="text" name="query" class="hidden">
+          <!--the input element above is not rendered but instead used as an ever present part of the request body -->
+          <label id="pooled" class="z-1 duration-500 top-0 ease-out align-middle toggle-wrapper switch" style="--slider-checked-color:gray; --switch-size:15px;" role="button">
+            <input type="checkbox" name="pooled">
+            <div class="show text-sm p-1.5 tooltip to-right flex align-middle absolute rounded bg-white shadow items-center justify-center text-current p-0.5 text-center" data-details="[inactive]"
+            style="--arrow-size:5px;">
+              <br>
+            <hr class="mx-1.5 bulge-center border-0 p-0.5 h-full py-3 border-transparent">
+            <p class="whitespace-pre">pooled connection</p>
+          </div>
+          <span class="slider"></span>
+          <br>
+          <i class="relative mt-1 dots-1 inline-block p-2" id="loader1"></i>
+        </label>
+      </form>
+      <section class="align-middle inline-block [&>*]:text-center [&>*]:align-middle [&>*]:inline-block mt-2">
+        <div>
+          <p class="px-4 text-sm mb-2">server address</p>
+          <code id="server_addr" class="inline-block"></code>
+        </div>
+        <hr class="mx-4 p-px h-11 border-0 bg-gray-700">
+        <div>
+          <p class="px-4 text-sm mb-2">server port</p>
+          <code id="server_port" class="px-4 inline-block"></code>
+        </div>
+      </section>
+      
+      <h3 class="mt-10 font-semibold text-gray-600">Execute Queries <span class="font-normal">(the templates are editable)</span></h3>
+      <div class="my-4 m-2 inline-block [&amp;>*]:p-xy" style="--px:1.2rem; --py:0.6rem;" onclick="let t=event.target, i, ch; if(t.tagName.toLowerCase()!=='button') return; (ch=[].slice.call(this.children)).forEach(e=>e.classList[t===e?'add':'remove']('border-2')), ~(i=ch.indexOf(t))&&(queries.innerHTML = page.templates[i])">
+        <button class="ripple relative rounded-l-md border-r-2 border-gray-400 border-2">
+          <i class="fa fa-mouse-pointer mr-2"></i>select</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
+          <i class="fa fa-edit mr-2"></i>update</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
+            <i class="fa fa-fill-drip mr-2"></i>insert</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
+              alter<i class="fa fa-pencil-alt ml-2"></i></button><button class="ripple relative border-r-2 border-l-2 border-gray-400">create
+          <i class="fa fa-plus ml-2"></i></button><button class="ripple relative rounded-r-md border-l-2 border-gray-400">
+          delete<i class="ml-2 fa fa-trash-alt"></i></button>
+      </div>
+
+      <main class="mb-20 sm:mx-0 -mx-9 relative shadow border rounded-3xl border-gray-300">
+<pre id="queries" contenteditable  spellcheck="false" class="duration-700 ease-out rounded-t-3xl p-8 border-b-2 border-gray-300 w-full inline-block">
+<span class="font-semibold text-pink-500 inline-block mb-1">SELECT</span>
+  table_cell_id, 
+  <span class="inline-block my-1 font-semibold text-pink-500">first_field</span>
+<span class="font-semibold text-pink-500 inline-block my-1">FROM</span>
+  table_name
+<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span>
+  table_cell_id = <span class="font-semibold text-blue-400 inline-block">1</span>;
+</pre>
+  <button id="sendQuery" class="align-middle relative text-sm ml-4 my-2" onclick="let txt=Abbr.to(this, {2:'lC'}); page.asText(queries)&&(this.disabled=txt.data='awaiting query results....', bugs.classList.remove('show'), Abbr.to(this, ['nES','cL']).add('show'), account.submit())">
+    <div class="mt-0.5 -ml-px absolute h-1/2 w-1/5 rounded-tl-full border-t border-l border-current top-0 left-0"></div>
+    <div class="mt-2 rounded-3xl overflow-hidden absolute inset-0 text-green-400 m-1 mb-2"><div style="transform-origin: bottom; animation-duration: 3s; transform-origin: top right" class="w-1/3 top-1/2 origin-center bg-gradient-to-r from-transparent via-current to-tansparent absolute animate-spin p-10"></div></div>
+<div class="absolute h-1/2 w-1/4 rounded-br-full bottom-0 right-0 border-b border-r border-current mb-0.5 -mr-0.5"></div>
+<div class="hover:bg-green-100 mt-3 m-2 mx-1 relative inline-block  p-2 px-3 rounded-3xl bg-gray-100 ripple backdrop-filter backdrop-blur ripple text-current">
+  <i class="fa fa-cog inline-block align-middle pointer-events-none"></i>
+  <i class="fa fa-database inline-block align-middle mr-2 pointer-events-none"></i>apply query to database</div></button>
+  <div class="ml-4 inline-block no-hover no-focus slide tooltip">
+    <svg class="mr-1 inline-block w-8 align-middle text-red-600" viewBox="0 0 384 512">
+      <path pathLength="1" style="fill:orange;" class="draw-stroke" stroke-width="30" stroke="currentColor" d="M216 23.86c0-23.8-30.65-32.77-44.15-13.04C48 191.85 224 200 224 288c0 35.63-29.11 64.46-64.85 63.99-35.17-.45-63.15-29.77-63.15-64.94v-85.51c0-21.7-26.47-32.23-41.43-16.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14z"></path>
+    </svg>
+    <i>keepin it hot...</i>
+  </div>
+  <!-- result of database will be displayed via this element -->
+<aside id="result" class="no-focus-within p-8 left-0 bg-gray-100 h-full w-full tooltip no-hover no-focus slide-y absolute top-0">
+  <h4 class="font-semibold mb-4">Non-empty result of query</h4>
+  <pre class="w-full h-full overflow-scroll"></pre>
+  <button onclick="Abbr.to(this, ['pN', 'cL']).remove('show')" class="absolute top-10 right-10 p-3 rounded-full border border-gray-700 ripple"><i class="fa-times fa mr-2"></i> close</button>
+</aside>
+    </main>
+
+    </section>
+
+    <aside id="bugs" class="fixed bottom-8 tooltip no-focus no-hover no-focus-within slide left-3">
+      <article style="z-index: auto;" class="bg-white text-sm p-6 absolute bottom-0 left-0 border border-gray-300 rounded-3xl -m-1.5 pt-8 tooltip no-hover no-focus slide-y">
+        <h3 class="font-semibold text-gray-600 whitespace-pre">Starter kit is bedevilled by <code>&lt;N&gt; errors</code></h3>
+<hr class="my-1 w-1/2 m-auto">
+<ul class="px-2 overflow-scroll mb-16 list-disc list-inside space-y-4" style="max-height:50vh;"></ul>
+      </article>
+      <div class="text-left relative inline-block rounded-full align-middle text-red-500">
+        <div class="rounded-inherit overflow-hidden absolute inset-1"><div style="transform-origin: bottom; animation-duration: 3s;" class="left-1/3 bg-gradient-to-r from-transparent via-current to-tansparent h-full bottom-1/4 w-1/2 absolute animate-spin"></div></div>
+        <button class="ripple m-2 inline-block p-5 bg-white rounded-inherit text-current fa text-2xl relative hover:bg-black fa-bug text-current duration-300 ease-out" onclick="Abbr.to(this, ['pN','pES','cL']).toggle('show')"></button>
+      </div>
+    </aside>
+
+    <a target="_blank" href="https://dev.to/challenges/neon" class="fixed right-0 bottom-0 px-5 py-3 text-center rounded-t-3xl bg-near-black text-green-400 text-sm">Built for the ulitmate <img class="inline-block" src="neon.svg"> starter kit challenge ↗</a>
+    <!-- iframe for receiving responses for the submitted form above -->
+    <iframe frameborder="0" class="invisible pointer-events-none absolute top-0 " id="response" name="response" onload="let res; (res=this.contentWindow.document.body.textContent)&&receive(res)"></iframe>
+<script>
+let delayed;
+function format(str) {
+  return str&&str.replace(/,/g, e=>e+'\n\t').replace(/\{|\}/g, e=>'\n'.repeat(e=='}')+e+'\n\t'.repeat(e=='{'))
+}
+function receive(res, raw, len, html='') {
+  res=JSON.parse(res), Abbr.to(sendQuery, ['nES','cL']).remove('show'), sendQuery.disabled=0,
+  Abbr.to(sendQuery, {2:'lC'}).data = 'apply query to database';
+  /*end of restoring state before sending query*/
+  // console.log('::RES::', res);
+
+  if(res.errors&&res.errors.length) {Abbr.to(bugs, 'cL').add('show'),
+    res.errors.forEach(error=>{
+      html+=`<li><code class='block mb-2'>${error[0]}</code>Fix: <i>${error[1]}</i></li>`
+    }), bugs.querySelector('code').textContent = (len=res.errors.length) +' error'+ 's'.repeat(len!=1), bugs.querySelector('ul').innerHTML=html;
+    return;
+  }
+  
+  if(res.result) { 
+    /*green flash effect on query input area to signal success */
+    let cls = queries.classList;
+    cls.add('bg-green-100'), setTimeout(_=>cls.remove('bg-green-100'), 600)
+    res.result.length&&(result.querySelector('pre').innerText=format(JSON.stringify(res.result)), result.classList.add('show'));
+    return
+  };
+
+  ['PGDATABASE', 'version'].forEach((field, i, _i)=>{ res[field]&&((_i=delayed[i]).textContent  = res[field]), _i.classList.remove('skeleton') }),
+  /*only expected to be executed for very first response*/
+  loader1.classList.remove('dots-1'),
+  ['addr', 'port'].forEach((str, val)=>(val=res[str='server_'+str])&&(window[str].textContent = val))
+}
+debug&&w_Ev('onbeforeunload')(_=>"Prevents unintentional reloads of the page");
+let DOMLoaded, vars=[], crE = (tag, attrs, values)=>(tag = document.createElement(tag), values&&Object.keys(values).forEach(key=>tag[key]=values[key]), attrs.forEach(attr=>tag.setAttribute(attr.name, attr.value)), tag);
+w_Ev_dom(function(style, types) {
+  delayed = qsa('.skeleton'),
+  (style=document.documentElement.style).backdropFilter == void 0&&style.setProperty('--bg-opacity-pad', 0.5),
+  animations.addRippleAnimations();
+  if(debug) return;
+  DOMLoaded = !0,
+  /*initial request to synchronize config variables with UI*/
+  account.submit(),
+
+  (types = document.createElement('datalist')).id = "types",
+  ['DECIMAL(<N>, <N>)', 'FLOAT', 'BIGINT', 'INT', 'SMALLINT', 'TINYINT', 'FLOAT(<N>)', 'BIT(<N>)', 'JSON', 'YEAR', 'DATE', 'TIME', 'DATETIME', 'TIMESTAMP', 'CHAR(<N>)', 'BINARY(<N>)', 'VARCHAR(<N>)', 'VARBINARY(<N>)', 'TINYBLOB', 'TINYTEXT', 'BLOB', 'TEXT', 'MEDIUMBLOB', 'MEDIUMTEXT', 'LONGBLOB', 'LONGTEXT', 'ENUM(...)', ' SET(...)']
+    .forEach((type, el)=>{
+      (el = document.createElement('option')).value = type,
+      types.appendChild(el)
+    }), document.body.appendChild(types)
+})
+
+function inView(value) { 
+  const item = value.getBoundingClientRect(); 
+  return ( 
+      item.top >= 0 && 
+      item.left >= 0 && 
+      item.bottom <= ( 
+          window.innerHeight || 
+          document.documentElement.clientHeight) && 
+      item.right <= ( 
+          window.innerWidth || 
+          document.documentElement.clientWidth) 
+  );
+}
+/* reset cached offsetTop value for every window resize */
+w_Ev_rz(_=>vars[0]=0)
+
+w_Ev_scroll(function(y) {
+  y = this.scrollY,
+  pooled.classList[cLs(y>(vars[0]||=5+pooled.offsetTop))]('affix')
+})
+</script>
+
+</body>
