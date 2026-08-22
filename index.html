@@ -1,308 +1,468 @@
-<!DOCTYPE HTML><head>
-        <title>Neontech starter kit UI | Browser client for starter kit</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/tailwind.min.css">
-        <link rel="stylesheet" href="css/all.min.css">
-        <link rel="stylesheet" href="css/page.css">
-        <script src="js/ripples.js"></script>
-        <script src="js/utils.js"></script>
-        <script>
-let debug=/debug/.test(location.search), slice=arr=>[].slice.call(arr), qsa=str=>slice(document.querySelectorAll(str)),
-    uuid   = (a) => (a ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid)),
-page = {
-  templates: [`<span class="font-semibold text-pink-500 inline-block mb-1">SELECT</span>
-  table_cell_id, 
-  <span class="inline-block my-1 font-semibold text-pink-500">first_field</span>
-<span class="font-semibold text-pink-500 inline-block my-1">FROM</span>
-  table_name
-<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span>
-  table_cell_id = <span class="font-semibold text-blue-400 inline-block">1</span>;`,
-`<span class="font-semibold text-pink-500 inline-block mb-1">UPDATE</span> table_name
-<span class="inline-block my-1 font-semibold text-pink-500">SET</span> first_field  = second_field
-<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span> table_cell_id = 3
-<span class="font-semibold text-pink-500 inline-block my-1">RETURNING</span> *;`,
-`<span class="font-semibold text-pink-500 mb-2 inline-block">INSERT INTO</span> table_name (<span class="font-semibold text-pink-500 mb-2 inline-block">first_field, second_field</span>)
-<span class="font-semibold text-pink-500">VALUES</span>
-  (<span class="text-green-500 mb-2 inline-block">'Value one', '08-06-2024'</span>),
-  (<span class="text-green-500 mb-2 inline-block">'Value three', '12-01-2023'</span>),
-  (<span class="text-green-500 mb-2 inline-block">'Value five', '10-12-2020'</span>)
-<span class="font-semibold text-pink-500 mb-2 inline-block">RETURNING</span> *;`,
-`<span class="font-semibold text-pink-500 mb-2 inline-block">ALTER TABLE</span> table_name
-<span class="font-semibold text-pink-500">ADD COLUMN</span> table_cell_id <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="7" value="SERIAL" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500"></label> <span class="font-semibold text-pink-500">PRIMARY KEY</span>;`,
+<!DOCTYPE HTML>
+<html lang="en" class="preloaded">
 
-`<span class="font-semibold text-pink-500">CREATE TABLE</span> table_name (<br>
-  table_cell_id <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="7" value="SERIAL" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label> PRIMARY <span class="font-semibold text-pink-500">KEY</span>,
-  first_field  <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="14" value="VARCHAR(255)" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label><span class="font-semibold text-pink-500"> NOT </span><span class="font-semibold text-blue-400">NULL</span>,
-  second_field <label class="input-sizer inline-grid font-semibold"><input type="text" spellcheck="false" oninput="this.parentNode.dataset.value = this.value" size="5" value="DATE" placeholder="TYPE" list="types" class="outline-none border-b border-current text-yellow-500 p-1"></label><span class="font-semibold text-pink-500"> NOT </span><span class="font-semibold text-blue-400">NULL</span>
-);`,
-`<span class="font-semibold text-pink-500 mb-2 inline-block">ALTER TABLE</span> table_name
-<span class="font-semibold text-pink-500">DROP CONSTRAINT</span> table_cell_id;`],
-asText: function(node, inputs, txt='', cb) {
-    (cb=(nodes, flag, bool)=>slice(nodes).forEach(ch=>{
-      txt += (bool = ch.data || ch.value || ''),
-      !bool&&ch.childNodes.length&&cb(ch.childNodes, !0)
-    }))(node.childNodes);
-
-    txt=txt.replace(/\n+/g, ' ').trim(), txt=txt+';'.repeat(!/;$/.test(txt)),
-    account.query.value = txt;
-    return txt
-  }
-};
-</script>
-
-<style>
-.bg-near-black {
-  background: #282828;
-}
-.affix {
-  position: fixed;
-  top: 1em;
-}
-.input-sizer::after {
-  content: attr(data-value) " ";
-  visibility: hidden;
-  white-space: pre-wrap;
-}
-
-[disabled] {
-  pointer-events: auto;
-  cursor: not-allowed;
-}
-
-.dots-1 {
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  background: 
-    var(--_g) 0    0,
-    var(--_g) 0    100%,
-    var(--_g) 100% 100%;
-  background-size: 40% 40%;
-  animation:d1 1s infinite linear;
-}
-@keyframes d1 {
-    25% {background-position:100% 0   ,0 100%,100% 100%}
-    50% {background-position:100% 0   ,0 0   ,100% 100%}
-    75% {background-position:100% 0   ,0 0   ,0    100%}
-    100%{background-position:100% 100%,0 0   ,0    100%}
-}
-    html {
-    scroll-behavior: smooth;
-}
-@keyframes anim-round { 0%,100% { transform: translate3d(var(--_reach), 0px, 0px); } 25% { transform: translate3d(0px, var(--_reach), 0px); } 50% { transform: translate3d(var(--reach), 0px, 0px); } 75% { transform: translate3d(0px, var(--reach), 0px); } }
-.bg-squiggle {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 3' enable-background='new 0 0 6 3' width='6' height='3' fill='%23facc15'%3e%3cpolygon points='5.5%2c0 2.5%2c3 1.1%2c3 4.1%2c0'/%3e%3cpolygon points='4%2c0 6%2c2 6%2c0.6 5.4%2c0'/%3e%3cpolygon points='0%2c2 1%2c3 2.4%2c3 0%2c0.6'/%3e%3c/svg%3e");
-}
-.draw-stroke {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw-stroke 1s ease-out infinite alternate;
-}
-@keyframes draw-stroke {
-    0% {
-    stroke-dashoffset: 1;
-}
-
-100% {
-    stroke-dashoffset: 0;
-}
+<head>
+  <title>Nullvector - Mobile Monitoring Software</title>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#ff056">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-language" content="en-br">
+  <meta name="description" content="Nullvector description">
+  <meta name="keywords" description="Nullvector comma-separated keywords here">
+  
+  <link rel="stylesheet" preload="true" href="/css/page.css">
+  <link rel="stylesheet" href="/css/tailwind.min.css">
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link rel="stylesheet" href="/css/glitch.css">
+  
+  <script src="/js/utils.js" id="utils"></script>
+  <script src="/js/ripples.js"></script>
+  
+  <script src="/js/Gradient.js"></script>
+  <style>
+    .circle-paused svg circle {
+      animation-play-state: paused
     }
-@font-face {
-    font-family: 'Capsmall_clean';
-    font-style: normal;
-    font-weight: normal;
-    src: local('fonts/Capsmall_clean'), url('fonts/Capsmall_clean.woff') format('woff');
-		}
-    .font-capture {
-      font-family: Capsmall_clean;
+    button {
+      color: currentColor;
     }
-    *:hover > .decorate > div, chrome .decorate-parent:hover > .decorate > div {
-                --tw-scale-x: 8;
-                --tw-scale-y: 8;
-                transform: scale3d(var(--tw-scale-x),var(--tw-scale-y),1);
-                --tw-bg-opacity: 0.15;
-            }
+    button.ripple>*,
+    a.ripple>* {
+      pointer-events: none;
+    }
+    
+    html.preloaded .marquee-y>* {
+      animation: none;
+    }
+    
+    .marquee-y>* {
+      animation: marquee-y 4s calc(var(--t) - 4s) linear infinite;
+    }
+    
+    @keyframes marquee-y {
+      to {
+        transform: translateY(var(--px));
+      }
+    }
+    
+    .\[\&\>\*\]\:absolute>* {
+      position: absolute;
+    }
+    
+    /* .relative {
+  position: relative;
+} */
+    @keyframes fadeIn {
 
-            * > .decorate.out > div, .decorate-parent > .decorate.out > div {
-                --tw-scale-x: 8;
-                --tw-scale-y: 8;
-            }
+      0%,
+      50% {
+        opacity: 0;
+      }
+      
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    body {
+      animation: 1.5s ease-out fadeIn forwards;
+      background: #282828;
+    }
+    
+    .bg-near-black {
+      background: #282828;
+    }
+    
+    .rotext {
+      perspective: calc(3*48px);
+      perspective-origin: top right;
+    }
+    
+    .rotext>* {
+      --y: 60px;
+      transform: rotateX(90deg) translate3d(0, var(--y), 0);
+      opacity: 0;
+      /*   transition: transform 0s linear .45s, opacity 0.3s linear; */
+      transition: transform .65s cubic-bezier(.215, .61, .355, 1) calc(var(--index, 0) * .1s + .55s), opacity .35s linear calc(var(--index, 0) * .1s + .55s);
+      transform-origin: center bottom;
+      transform-style: preserve-3d;
+    }
+    
+    .rotext.show>* {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+    
+    .done {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      transition: opacity 0.5s, transform 0.3s 0.12s ease, visibility 0s 0.06s;
+    }
+  </style>
+  <style class="b70beddb-8a03-40a9-a514-589dc67489e6">
+    .vh-full {
+      height: 100vh;
+    }
+    
+    .path {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: dash 5s linear alternate infinite;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+  <style class="be88bf2f-65dc-4be1-a04c-5bb025e8266b">
+    .z-force-unset {
+      z-index: unset !important;
+    }
+    
+    .\[\&\>\*\]\:inline-block>* {
+      display: inline-block;
+    }
+    
+    html,
+    .smooth-scroll {
+      scroll-behavior: smooth
+    }
+    
+    .\[\&\>\*\]\:animate-y-full>* {
+      animation: translate-y-full 0.5s var(--delay) cubic-bezier(0.37, 0, 0.63, 1) forwards;
+      display: inline-block;
+    }
+    
+    .scaffold>div {
+      transition: .6s var(--delay) cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    
+    html.preloaded .scaffold {
+      pointer-events: none;
+    }
+    
+    html.preloaded .scaffold>div {
+      --tw-translate-y: -100%;
+    }
+    
+    /*END: of styles for intro text */
+    .skeleton {
+      color: transparent;
+      animation: skeleton-loading 0.8s ease-in-out infinite alternate;
+    }
+    
+    @keyframes skeleton-loading {
+      0% {
+        background-color: hsl(200, 20%, 80%);
+      }
+      
+      100% {
+        background-color: hsl(200, 20%, 95%);
+      }
+    }
+    
+    .ripple {
+      overflow: hidden;
+    }
+    
+    .dots-6 {
+      width: 30px;
+      aspect-ratio: 1.154;
+      --_g: no-repeat radial-gradient(farthest-side, currentColor 90%, #0000);
+      background: var(--_g) 50% 0, var(--_g) 0 100%, var(--_g) 100% 100%;
+      background-size: 35% calc(35%*1.154);
+      animation: d6 0.58s infinite;
+    }
+    
+    @keyframes d6 {
 
-            *:hover > .decorate.out > div, .decorate-parent:hover > .decorate.out > div {
-                --tw-scale-x: 1;
-                --tw-scale-y: 1
-            }
-        </style>
-    </head>
-    <body>
-      <a href="https://neon.tech/docs/get-started-with-neon/production-checklist" class="font-bookweb text-lg fixed top-0 left-0 right-0 bg-green-100 p-2 block text-center underline">Getting ready for production? Explore Neon.tech features</a>
-      <section class="mt-10 p-10 md:w-4/5 m-auto border-r sm:border-gray-300 border-l">
-        <div class="absolute top-10 m-2 right-0">
-          <p class="bg-white z-1 relative p-1 text-sm rounded-tr-lg"><i class="fa fa-code text-gray-500"></i> attributions</p>
-          <div style="z-index: auto;" class="pt-8 text-sm p-4 bg-gray-200 right-0 top-0 shadow tooltip absolute rounded-lg w-40">
-            <i class="inline-block p-2 dots-1 text-gray-600"></i> • <a target="_blank" href="https://css-tricks.com/single-element-loaders-the-dots/">Temani Afif</a>
-            <hr class="my-2">
-            <label class="switch" style="--slider-checked-color:gray;--switch-size:12px;"><span class="slider"></span></label> • <a target="_blank" href="https://uiverse.io/profile/Voxybuns">Voxybuns</a>
-          </div>
+      50%,
+      100% {
+        background-position: 100% 100%, 50% 0, 0 100%;
+      }
+    }
+  </style>
+  <style class="ce77170-0f0a-456b-8792-cbe8bb2cfff8">
+    @keyframes animate-left-1_10 {
+      100% {
+        left: 20%;
+        opacity: 1;
+      }
+    }
+    
+    @keyframes inputHighlighter {
+      0% {
+        background: #5264AE;
+      }
+      
+      100% {
+        width: 0;
+        background: transparent;
+      }
+    }
+    
+    @keyframes translate-y-full {
+      0% {
+        transform: translateY(0%);
+      }
+      
+      100% {
+        transform: translateY(200%);
+      }
+    }
+    
+    @keyframes rotate {
+      from {
+        transform: translateX(0);
+      }
+      
+      to {
+        transform: translateX(-50%);
+      }
+    }
+    
+    @keyframes loader {
+      0% {
+        transform:
+          /*translateX(-50%) translateY(-50%) */
+          scale(1) rotate(-90deg);
+      }
+      
+      25% {
+        transform: scale(1.1) rotate(-90deg);
+      }
+      
+      50% {
+        transform: scale(1.1) rotate(-180deg);
+      }
+      
+      75% {
+        transform: scale(1.1) rotate(-180deg);
+      }
+      
+      100% {
+        transform:
+          /*translateX(-50%) translateY(-50%) */
+          scale(1) rotate(-180deg);
+      }
+    }
+  </style>
+</head>
+
+<body onanimationend="if(_debug) return; let cls=['bg-red-400','bg-yellow-500','bg-near-black']; qS('.scaffold>div',!0).forEach((div,i)=>delay(_=>div.classList.add(cls[i]), 750 * i)), delay(_=>event.target==this&&preload(),1e3)"><!-- noise background -->
+  <aside class="hidden absolute inset-0 backdrop-blur-xl backdrop-filter" style="background-image: url('../noise.svg')"></aside><!-- scaffold preloader -->
+  
+  <aside class="text-white inset-0 scaffold fixed" style="z-index:2;">
+    <div class="inset-0 absolute transform-gpu" style="--delay: 280ms;"></div>
+    <div class="inset-0 absolute transform-gpu" style="--delay: 150ms;"></div>
+    <div class="inset-0 absolute text-center flex items-center justify-center intro flex-col transform-gpu" style="--delay: 0ms;" ontransitionend="let phiz=Abbr.to(this,['lEC','pES']); event.propertyName=='transform'&&(event.target==phiz ? (new Gradient, ({ canvas: 'canvas#gradient', colors: ['#000', '#aaa', '#282828'] })) : event.target==this&&(delay(_=>qS('nav',!0).forEach(nav=>Abbr.to(nav,'cL').add('show')), 600), enter(), togl, (gradient, ['opacity-80'])))">
+      <div class="pointer-events-none bg-gradient-to-br from-blue-900 via-red-900 to-yellow-500 opacity-50 absolute inset-0 z-1 p-4"></div>
+      <header>
+        <button style='--tw-bg-opacity:.3' class="bg-white pointer-events-auto text-current border-r border-current p-3 ripple absolute tooltip no-hover -slide no-focus" onclick="document.documentElement.classList.add('preloaded')">enter<i class="fa fa-arrow-right ml-2"></i></button>
+        <h3 class="inline-block mx-5 text-lg opacity-50 font-semibold">TL:DR;</h3>
+        <button class="text-current border-l border-current p-3 pointer-events-auto ripple relative">contact</button>
+      </header>
+      
+      <h2 class="mt-3 sm:items-center items-end flex">
+        <div class="lg:-mt-10 sm:scale-125 md:scale-100 transform scale-150 precise-typo-1 relative">N<div class="duration-500 ease-out inset-1 absolute mix-blend-difference text-green-100" style="--tw-bg-opacity: 0.3">N</div>
         </div>
-        <i class="fa fa-database text-xl text-gray-600 mr-3"></i><code class="skeleton p-1 rounded-full font-semibold">database</code>
-        <p class="my-2 py-3 skeleton italic rounded-full"></p>
-        <form id="account" target="response" method="POST" action="api/accountData" onsubmit="return false;" class='align-middle inline-block mr-56 mb-6'>
-          <input type="text" name="query" class="hidden">
-          <!--the input element above is not rendered but instead used as an ever present part of the request body -->
-          <label id="pooled" class="z-1 duration-500 top-0 ease-out align-middle toggle-wrapper switch" style="--slider-checked-color:gray; --switch-size:15px;" role="button">
-            <input type="checkbox" name="pooled">
-            <div class="show text-sm p-1.5 tooltip to-right flex align-middle absolute rounded bg-white shadow items-center justify-center text-current p-0.5 text-center" data-details="[inactive]"
-            style="--arrow-size:5px;">
-              <br>
-            <hr class="mx-1.5 bulge-center border-0 p-0.5 h-full py-3 border-transparent">
-            <p class="whitespace-pre">pooled connection</p>
-          </div>
-          <span class="slider"></span>
-          <br>
-          <i class="relative mt-1 dots-1 inline-block p-2" id="loader1"></i>
-        </label>
-      </form>
-      <section class="align-middle inline-block [&>*]:text-center [&>*]:align-middle [&>*]:inline-block mt-2">
-        <div>
-          <p class="px-4 text-sm mb-2">server address</p>
-          <code id="server_addr" class="inline-block"></code>
+        <div class="md:ml-5 ml-8 text-2xl text-left tooltip -slide no-hover absolute" style="z-index:unset">ull<p>vektor</p>
         </div>
-        <hr class="mx-4 p-px h-11 border-0 bg-gray-700">
-        <div>
-          <p class="px-4 text-sm mb-2">server port</p>
-          <code id="server_port" class="px-4 inline-block"></code>
-        </div>
+      </h2>
+      <p style="z-index:unset" class="lg:-mt-8 tooltip -slide-y no-hover absolute pt-5 pb-12 md:pt-0">Mobile monitoring and tracking software • FOR</p>
+      <section class="sm:w-96 w-5/6 items-center flex tooltip -slide no-hover absolute mb-12 no-focus">
+        <hr class="border-0 h-px bulge-right flex-1">
+        <ul class="h-20 text-sm pt-20 overflow-hidden relative z-1 relative font-mono text-center mx-3" onanimationiteration="let ch=this.children, t=event.target, id=dev.skills.indexOf(t.textContent); t.textContent = dev.skills[(id + ch.length) % dev.skills.length]" style="--h: 5rem;height:var(--h);padding-top:var(--h)">
+        </ul>
+        <hr class="border-0 h-px bulge-left flex-1">
       </section>
       
-      <h3 class="mt-10 font-semibold text-gray-600">Execute Queries <span class="font-normal">(the templates are editable)</span></h3>
-      <div class="my-4 m-2 inline-block [&amp;>*]:p-xy" style="--px:1.2rem; --py:0.6rem;" onclick="let t=event.target, i, ch; if(t.tagName.toLowerCase()!=='button') return; (ch=[].slice.call(this.children)).forEach(e=>e.classList[t===e?'add':'remove']('border-2')), ~(i=ch.indexOf(t))&&(queries.innerHTML = page.templates[i])">
-        <button class="ripple relative rounded-l-md border-r-2 border-gray-400 border-2">
-          <i class="fa fa-mouse-pointer mr-2"></i>select</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
-          <i class="fa fa-edit mr-2"></i>update</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
-            <i class="fa fa-fill-drip mr-2"></i>insert</button><button class="ripple relative border-l-2 border-r-2 border-gray-400">
-              alter<i class="fa fa-pencil-alt ml-2"></i></button><button class="ripple relative border-r-2 border-l-2 border-gray-400">create
-          <i class="fa fa-plus ml-2"></i></button><button class="ripple relative rounded-r-md border-l-2 border-gray-400">
-          delete<i class="ml-2 fa fa-trash-alt"></i></button>
+      <div class="text-sm tooltip -slide-y no-hover mx-10 absolute" style="z-index:unset">
+        with <a class='underline'>proven testimonials</a>
       </div>
-
-      <main class="mb-20 sm:mx-0 -mx-9 relative shadow border rounded-3xl border-gray-300">
-<pre id="queries" contenteditable  spellcheck="false" class="duration-700 ease-out rounded-t-3xl p-8 border-b-2 border-gray-300 w-full inline-block">
-<span class="font-semibold text-pink-500 inline-block mb-1">SELECT</span>
-  table_cell_id, 
-  <span class="inline-block my-1 font-semibold text-pink-500">first_field</span>
-<span class="font-semibold text-pink-500 inline-block my-1">FROM</span>
-  table_name
-<span class="font-semibold text-pink-500 inline-block my-1">WHERE</span>
-  table_cell_id = <span class="font-semibold text-blue-400 inline-block">1</span>;
-</pre>
-  <button id="sendQuery" class="align-middle relative text-sm ml-4 my-2" onclick="let txt=Abbr.to(this, {2:'lC'}); page.asText(queries)&&(this.disabled=txt.data='awaiting query results....', bugs.classList.remove('show'), Abbr.to(this, ['nES','cL']).add('show'), account.submit())">
-    <div class="mt-0.5 -ml-px absolute h-1/2 w-1/5 rounded-tl-full border-t border-l border-current top-0 left-0"></div>
-    <div class="mt-2 rounded-3xl overflow-hidden absolute inset-0 text-green-400 m-1 mb-2"><div style="transform-origin: bottom; animation-duration: 3s; transform-origin: top right" class="w-1/3 top-1/2 origin-center bg-gradient-to-r from-transparent via-current to-tansparent absolute animate-spin p-10"></div></div>
-<div class="absolute h-1/2 w-1/4 rounded-br-full bottom-0 right-0 border-b border-r border-current mb-0.5 -mr-0.5"></div>
-<div class="hover:bg-green-100 mt-3 m-2 mx-1 relative inline-block  p-2 px-3 rounded-3xl bg-gray-100 ripple backdrop-filter backdrop-blur ripple text-current">
-  <i class="fa fa-cog inline-block align-middle pointer-events-none"></i>
-  <i class="fa fa-database inline-block align-middle mr-2 pointer-events-none"></i>apply query to database</div></button>
-  <div class="ml-4 inline-block no-hover no-focus slide tooltip">
-    <svg class="mr-1 inline-block w-8 align-middle text-red-600" viewBox="0 0 384 512">
-      <path pathLength="1" style="fill:orange;" class="draw-stroke" stroke-width="30" stroke="currentColor" d="M216 23.86c0-23.8-30.65-32.77-44.15-13.04C48 191.85 224 200 224 288c0 35.63-29.11 64.46-64.85 63.99-35.17-.45-63.15-29.77-63.15-64.94v-85.51c0-21.7-26.47-32.23-41.43-16.5C27.8 213.16 0 261.33 0 320c0 105.87 86.13 192 192 192s192-86.13 192-192c0-170.29-168-193-168-296.14z"></path>
-    </svg>
-    <i>keepin it hot...</i>
-  </div>
-  <!-- result of database will be displayed via this element -->
-<aside id="result" class="no-focus-within p-8 left-0 bg-gray-100 h-full w-full tooltip no-hover no-focus slide-y absolute top-0">
-  <h4 class="font-semibold mb-4">Non-empty result of query</h4>
-  <pre class="w-full h-full overflow-scroll"></pre>
-  <button onclick="Abbr.to(this, ['pN', 'cL']).remove('show')" class="absolute top-10 right-10 p-3 rounded-full border border-gray-700 ripple"><i class="fa-times fa mr-2"></i> close</button>
-</aside>
-    </main>
-
-    </section>
-
-    <aside id="bugs" class="fixed bottom-8 tooltip no-focus no-hover no-focus-within slide left-3">
-      <article style="z-index: auto;" class="bg-white text-sm p-6 absolute bottom-0 left-0 border border-gray-300 rounded-3xl -m-1.5 pt-8 tooltip no-hover no-focus slide-y">
-        <h3 class="font-semibold text-gray-600 whitespace-pre">Starter kit is bedevilled by <code>&lt;N&gt; errors</code></h3>
-<hr class="my-1 w-1/2 m-auto">
-<ul class="px-2 overflow-scroll mb-16 list-disc list-inside space-y-4" style="max-height:50vh;"></ul>
-      </article>
-      <div class="text-left relative inline-block rounded-full align-middle text-red-500">
-        <div class="rounded-inherit overflow-hidden absolute inset-1"><div style="transform-origin: bottom; animation-duration: 3s;" class="left-1/3 bg-gradient-to-r from-transparent via-current to-tansparent h-full bottom-1/4 w-1/2 absolute animate-spin"></div></div>
-        <button class="ripple m-2 inline-block p-5 bg-white rounded-inherit text-current fa text-2xl relative hover:bg-black fa-bug text-current duration-300 ease-out" onclick="Abbr.to(this, ['pN','pES','cL']).toggle('show')"></button>
+      
+      <div class="w-1/5 sm:w-36 mx-auto overflow-hidden mb-3">
+        <hr class="mt-2 h-1 border-0 rounded-full bg-green-100 to-fro">
       </div>
-    </aside>
-
-    <a target="_blank" href="https://dev.to/challenges/neon" class="fixed right-0 bottom-0 px-5 py-3 text-center rounded-t-3xl bg-near-black text-green-400 text-sm">Built for the ulitmate <img class="inline-block" src="neon.svg"> starter kit challenge ↗</a>
-    <!-- iframe for receiving responses for the submitted form above -->
-    <iframe frameborder="0" class="invisible pointer-events-none absolute top-0 " id="response" name="response" onload="let res; (res=this.contentWindow.document.body.textContent)&&receive(res)"></iframe>
-<script>
-let delayed;
-function format(str) {
-  return str&&str.replace(/,/g, e=>e+'\n\t').replace(/\{|\}/g, e=>'\n'.repeat(e=='}')+e+'\n\t'.repeat(e=='{'))
-}
-function receive(res, raw, len, html='') {
-  res=JSON.parse(res), Abbr.to(sendQuery, ['nES','cL']).remove('show'), sendQuery.disabled=0,
-  Abbr.to(sendQuery, {2:'lC'}).data = 'apply query to database';
-  /*end of restoring state before sending query*/
-  // console.log('::RES::', res);
-
-  if(res.errors&&res.errors.length) {Abbr.to(bugs, 'cL').add('show'),
-    res.errors.forEach(error=>{
-      html+=`<li><code class='block mb-2'>${error[0]}</code>Fix: <i>${error[1]}</i></li>`
-    }), bugs.querySelector('code').textContent = (len=res.errors.length) +' error'+ 's'.repeat(len!=1), bugs.querySelector('ul').innerHTML=html;
-    return;
-  }
+    </div>
+  </aside>
   
-  if(res.result) { 
-    /*green flash effect on query input area to signal success */
-    let cls = queries.classList;
-    cls.add('bg-green-100'), setTimeout(_=>cls.remove('bg-green-100'), 600)
-    res.result.length&&(result.querySelector('pre').innerText=format(JSON.stringify(res.result)), result.classList.add('show'));
-    return
-  };
-
-  ['PGDATABASE', 'version'].forEach((field, i, _i)=>{ res[field]&&((_i=delayed[i]).textContent  = res[field]), _i.classList.remove('skeleton') }),
-  /*only expected to be executed for very first response*/
-  loader1.classList.remove('dots-1'),
-  ['addr', 'port'].forEach((str, val)=>(val=res[str='server_'+str])&&(window[str].textContent = val))
-}
-debug&&w_Ev('onbeforeunload')(_=>"Prevents unintentional reloads of the page");
-let DOMLoaded, vars=[], crE = (tag, attrs, values)=>(tag = document.createElement(tag), values&&Object.keys(values).forEach(key=>tag[key]=values[key]), attrs.forEach(attr=>tag.setAttribute(attr.name, attr.value)), tag);
-w_Ev_dom(function(style, types) {
-  delayed = qsa('.skeleton'),
-  (style=document.documentElement.style).backdropFilter == void 0&&style.setProperty('--bg-opacity-pad', 0.5),
-  animations.addRippleAnimations();
-  if(debug) return;
-  DOMLoaded = !0,
-  /*initial request to synchronize config variables with UI*/
-  account.submit(),
-
-  (types = document.createElement('datalist')).id = "types",
-  ['DECIMAL(<N>, <N>)', 'FLOAT', 'BIGINT', 'INT', 'SMALLINT', 'TINYINT', 'FLOAT(<N>)', 'BIT(<N>)', 'JSON', 'YEAR', 'DATE', 'TIME', 'DATETIME', 'TIMESTAMP', 'CHAR(<N>)', 'BINARY(<N>)', 'VARCHAR(<N>)', 'VARBINARY(<N>)', 'TINYBLOB', 'TINYTEXT', 'BLOB', 'TEXT', 'MEDIUMBLOB', 'MEDIUMTEXT', 'LONGBLOB', 'LONGTEXT', 'ENUM(...)', ' SET(...)']
-    .forEach((type, el)=>{
-      (el = document.createElement('option')).value = type,
-      types.appendChild(el)
-    }), document.body.appendChild(types)
-})
-
-function inView(value) { 
-  const item = value.getBoundingClientRect(); 
-  return ( 
-      item.top >= 0 && 
-      item.left >= 0 && 
-      item.bottom <= ( 
-          window.innerHeight || 
-          document.documentElement.clientHeight) && 
-      item.right <= ( 
-          window.innerWidth || 
-          document.documentElement.clientWidth) 
-  );
-}
-/* reset cached offsetTop value for every window resize */
-w_Ev_rz(_=>vars[0]=0)
-
-w_Ev_scroll(function(y) {
-  y = this.scrollY,
-  pooled.classList[cLs(y>(vars[0]||=5+pooled.offsetTop))]('affix')
-})
-</script>
-
+  <main class="text-white relative overflow-x-hidden vh-full overflow-scroll">
+    <canvas id="gradient" class="w-full h-full fixed bg-white duration-300 ease-out" ontransitionend="event.propertyName=='opacity'&&enter()"></canvas>
+    <section class="relative vh-full" style="min-height:100vh">
+      <!-- main hero content -->
+      <main class="pt-24 flex flex-col justify-around relative h-full text-center sm:text-left tooltip no-hover -slide-y">
+        <section class='mx-5'>
+          <h2 style="--index:2" class="rotext">
+            <div class="relative sm:text-6xl text-4xl duration-300 ease-out">
+              Nullvektor - Ethical Espionage
+              <div class='duration-300 ease absolute inset-0 ml-0.5 mt-0.5 text-black text-glitch'>Nullvektor - Ethical Espionage</div>
+            </div>
+          </h2>
+          <ul class='sm:space-y-4 sm:mt-6 text-base sm:w-2/3 sm:text-3xl'>
+            <li>Management from beyond the confines of a device - Remotely manage devices you provide access to</li>
+            <li>Remotely monitor your partner cellphone, ethically with no prior device rooting and leaving no traces</li>
+           </ul>
+          <section class="mt-5 text-lg sm:text-xl space-x-1 [&>*]:rounded-inherit rounded-xl [&>*]:p-2">
+          <button class='bg-green-100 sm:text-lg text-green-600'><i class='fa fa-check'></i> ethically</button>
+          <button class='bg-yellow-100 sm:text-lg text-yellow-600'><i class='fa fa-trace'></i>leaves no trace</button>
+          <button class='bg-white sm:text-lg text-black'><i class='fa fa-dot'></i>request a demo</button>
+          </section>
+        </section>
+       
+        <aside class="p-5 [&>*]:rounded-inherit rounded-full [&>*]:relative sm:flex sm:justify-center">
+          <!--   section for controls and progress of showcases -->
+          
+          <button class="ripple relative border-current border p-1" onclick="Abbr.to(this,['nES','cL']).toggle('circle-paused'), qS('svg',!0,this).forEach(ch=>togl(ch,'show'))">
+            <div class="relative flex-col flex items-center justify-center">
+              <svg viewBox="0 0 512 512" class="fill-current m-auto p-2 w-10 tooltip no-hover no-focus no-focus-within -slide">
+                <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path>
+              </svg>
+              <svg viewBox="0 0 448 512" class="fill-current p-2 w-8 absolute top-0.5 tooltip no-hover no-focus no-focus-within slide show">
+                <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
+              </svg>
+            </div>
+          </button>
+          <main onclick="let btn=event.target, i=[].indexOf.call(this.children,btn), mckp=mockups[i]?.split(':'); if(btn.tagName!=='BUTTON') return; mckp[0], loadMockups(i,src=>{})" onanimationiteration="let c=event.target, n=Abbr.to(Abbr.to(c,['pN','pN','nES'],!0) || this, {3:'fEC'}); [c,n].forEach((el,i)=>Abbr.to(el,'cL')[cLs(i)]('path'))" class="flex justify-center flex-wrap [&>*]:relative [&>*]:rounded-full sm:w-80">
+            <button class="ripple">
+              <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32" class="path"></circle>
+              </svg>
+              <span class="absolute inset-0 text-xl">•</span></button>
+              <button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32"></circle>
+              </svg>
+              <span class="absolute inset-0 text-xl">•</span></button><button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
+              </svg>
+              <span class="absolute inset-0 text-xl">•</span></button><button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
+              </svg>
+              <span class="absolute inset-0 text-xl">•</span></button>
+              <button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
+              </svg>
+              <span class="absolute inset-0 text-xl">•</span></button>
+          </main>
+        </aside>
+        <aside style='line-height:0.88' class='precise-typo-1 -ml-10 pointer-events-none sm:right-0 absolute bottom-0 font-bold opacity-30'>
+          <span class="sm:block">N</span><span class="sm:block">U</span><span class="sm:block">L</span><span class="sm:block">L</span><span class="sm:block">V</span><span class="sm:block">E</span><span class="sm:block">K</span><span class="sm:block">T</span><span class="sm:block">O</span><span class="sm:block">R</span>
+        </aside>
+      </main>
+    </section>
+    <section class="vh-full relative border border-current"></section>
+    
+    <nav id="growShrink" class="text-center fixed tooltip -slide-y no-hover no-focus text-sm top-2 left-0 right-0">
+      <div style="--px:0.5em; --py:0.5em; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.7)" class="rounded-full bg-black [&>*]:align-middle rounded-inherit [&>*]:rounded-inherit inline-block [&>*]:p-xy backdrop-filter backdrop-blur p-1 lg:p-3 sm:p-2 cursor-pointer">
+        <a class="ripple hover:bg-white relative" onclick="document.documentElement.classList.remove('preloaded')">
+          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
+            <div style="--tw-bg-opacity: 0.5; --tw-scale-x:1.1; --tw-scale-y:var(--tw-scale-x);" class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out"></div>
+          </div><span class="mx-2 relative"><i class="fa fa-arrow-left"></i> Nullvektor</span>
+        </a>
+        <a class="hover:bg-white relative">
+          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
+            <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
+          </div><span class="relative"><i class="fa fa-address-card"></i>&nbsp;contact&nbsp;us</span>
+        </a>
+        <span class="sm:relative absolute"></span>
+        <a class="hover:bg-white relative fluid base:show">
+          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
+            <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
+          </div><span class="relative"><i class="fa fa-user"></i>&nbsp;testaments</span>
+        </a>
+        <!--<span class="md:relative absolute"></span><a class="fluid md:show hover:bg-yellow-600 bg-yellow-500" data-i="3"><div class="out decorate inset-0 absolute tooltip" style="z-index: auto"><div class="bg-yellow-500 inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div></div><span class="relative"><i class="fa fa-font"></i><i class="fa fa-project-diagram"></i> assets</span></a>-->
+        <span class="md:relative absolute"></span>
+        <a class="fluid sm:show hover:bg-white relative">
+          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
+            <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
+          </div><span class="relative"><i class="fa fa-icons"></i>&nbsp;about&nbsp;us</span>
+        </a>
+        <div class="text-center bg-inherit lg:absolute lg:invisible" style="padding:0">
+          <button class="hover:bg-gray-300 ripple relative text-current" style="border-color: currentcolor;">•••</button>
+          <div style="padding:0px; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.8); " class="text-sm bg-black">
+            <div></div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </main>
+  <script>
+    let loadImgs = (srcs, invk, all) => {
+        let count = 0;
+        srcs.forEach((src, img) => {
+          (img = new Image()).src = src, img.onload = _ => all ? ++count === srcs.length && invk?.call(null, srcs) : invk?.call(null, src)
+        })
+      },
+      mockups = ['2:company.png', '3:stack.png', '8:mockup.png', '5:web-sql.png', 'node-server.png'],
+      loadMockups = (i, invk, all) => {
+        let itm = mockups[i].split(':'),
+          srcs = N(+itm[0]).map((n, nm) => '/mockups/' + ((nm = itm[1].split('.'))[0] += '-' + n + '.' + nm[1]));
+        srcs[0] ||= '/mockups/' + mockups[i], loadImgs(srcs, invk, all)
+      };
+    /*handles animations and interactions on page after scaffold */
+    function enter() {
+      let secs = qS('main>section', !0);
+      ['.done', '.rotext', '.tooltip'].forEach((s, i) => qS(s, 0, secs[0])?.classList[cLs(i)](i ? 'show' : 'done'))
+    }
+  </script>
+  <script>
+    function onScroll(page, mthd, sTop, t, nav, heap) {
+      !(t = onScroll).lastY && (t.lastY = 0), sTop = page.scrollY || page.scrollTop, nav = qS('nav.topCta'),
+        mthd = cLs, nav && ['show' /*, 'relative', 'absolute'*/ ]
+        .forEach((e, i, a, cls) => {
+          (cls = nav.classList)[mthd(heap = sTop < t.lastY)](e),
+          i === 2 && cls[mthd(!heap)](e), i === 1 && cls[mthd(heap)](e)
+        }),
+        setTimeout(_ => t.lastY = sTop);
+      return t.lastY / (page.scrollHeight || innerHeight)
+    }
+    let DOMLoaded, ratio;
+    w_Ev_dom(_ => {
+      enter(),
+      Ev('scroll')(qS('main'))(function(ev) {
+          requestAnimationFrame(_ => {
+            ratio = onScroll(this), console.log('::SCROLL-RATIO::', ratio)
+          })
+        }), DOMLoaded = !0,
+        animations.addRippleAnimations(),
+        _debug || new Gradient({
+          canvas: 'canvas#gradient',
+          colors: ['#1e3a8a', '#7f1d1d', '#f59e0b']
+        })
+    })
+    let dev = {},
+      preload = _ => fetch('data.json').then(r => r.json()).then(data => {
+        let vw = innerWidth,
+          rz, h = qS('.scaffold h2'),
+          hr = qS('.scaffold div>hr'),
+          ul = Abbr.to(h, { 2: 'nES' }).children[1];
+        togl(Abbr.to(h, { 2: 'fEC' }), ['md:m-4', 'm-1.5']), togl(Abbr.to(h, 'lEC'), ['absolute', 'show']),
+          
+          togl(hr, ['', '-x'].map(s => 'to-fro' + s)), /*slicing out first three skils because only three can appear without overlays in vertical marquee*/
+          ul.innerHTML = (dev = data).skills.slice(0, 3).map((e, i, t) => `<li class=truncate>${e}</li>`).join(''), w_Ev_rz(rz = _vw => {
+            (_vw &&= [500, 640, 768, 1024].find(w => w > innerWidth)) !== vw && (vw = _vw, console.log('::RERUN::', vw), [].forEach.call(ul.children, (e, i, es, t = 4, it, s, n, v, r) => {
+              v = (r = el => ['Top', 'Height'].reduce((_n, p) => el['offset' + p] + _n, 0))(es[0]) / t, //velocity
+                s = r(e), it = s / v, //time interpolated by proportion
+                e.style.cssText = `--px:-${s}px; --t:${i?it:t}s`
+            }))
+          }), Abbr.to(ul, 'pN').ontransitionend = function() {
+            rz(), ul.classList.add('marquee-y'), togl(hr, 'rounded-full'), /*use loaded state of other assets on page */
+            delay(_ => {
+              new Gradient({ canvas: 'canvas#gradient', colors: ['#000000', '#aaaaaa', '#282828'] }),
+              togl(hr, ['to-fro-x', 'rounded-full']), Abbr.to(h, ['pES', 'fEC', 'cL']).replace('absolute', 'show')
+            }, 500)
+          },
+          ['', 'p', 'n'].forEach((s, i) => delay(_ => togl(Abbr.to(ul, ['pN', s + 'ES']), ['absolute', 'show']), 1e3 + (i > 1) * 2e3))
+      })
+  </script>
 </body>
+</html>
