@@ -254,13 +254,16 @@
           scale(1) rotate(-180deg);
       }
     }
+    .z-2 {
+      z-index: 2;
+    }
   </style>
 </head>
 
 <body onanimationend="if(_debug) return; let cls=['bg-red-400','bg-yellow-500','bg-near-black']; qS('.scaffold>div',!0).forEach((div,i)=>delay(_=>div.classList.add(cls[i]), 750 * i)), delay(_=>event.target==this&&preload(),1e3)"><!-- noise background -->
   <aside class="hiddens absolute inset-0 backdrop-blur-xl backdrop-filter" style="background-image: url('./noise.svg')"></aside><!-- scaffold preloader -->
   
-  <aside class="text-white inset-0 scaffold fixed" style="z-index:1;">
+  <aside class="z-2 text-white inset-0 scaffold fixed">
     <div class="inset-0 absolute transform-gpu" style="--delay: 280ms;"></div>
     <div class="inset-0 absolute transform-gpu" style="--delay: 150ms;"></div>
     <div class="inset-0 absolute text-center flex items-center justify-center intro flex-col transform-gpu" style="--delay: 0ms;" ontransitionend="let phiz=Abbr.to(this,['lEC','pES']); event.propertyName=='transform'&&(event.target==phiz ? (new Gradient, ({ canvas: 'canvas#gradient', colors: ['#000', '#aaa', '#282828'] })) : event.target==this&&(delay(_=>qS('nav',!0).forEach(nav=>Abbr.to(nav,'cL').add('show')), 600), enter(), togl, (gradient, ['opacity-80'])))">
@@ -415,6 +418,7 @@
       };
     /*handles animations and interactions on page after scaffold */
     function enter() {
+      qS('.scaffold').classList.toggle('z-2'), qS('.scaffold').classList.add('bg-near-black');
       let secs = qS('main>section', !0);
       ['.done', '.rotext', '.tooltip'].forEach((s, i) => qS(s, 0, secs[0])?.classList[cLs(i)](i ? 'show' : 'done'))
     }
