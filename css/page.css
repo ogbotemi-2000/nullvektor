@@ -80,7 +80,7 @@ html *:focus-within > .decorate > div, html .decorate-parent:focus-within > .dec
     right: unset;
 }
 .precise-typo-1 {
-    font-size: calc(110px + (240 - 100) * ((100vw - 500px) / (1200 - 400)));
+    font-size: calc(80px + (240 - 100) * ((100vw - 500px) / (1200 - 400)));
 }
 .bg-inherit {
   background:inherit;
@@ -473,8 +473,7 @@ with visibility: visible; triggers a hover event that then makes tooltip visible
 	 visibility: visible;
 	 opacity: 1;
 	 z-index: 3;
-	 --x: 0%;
-
+	 --x: 0%; --y:0%;
 }
   .tooltip.sm\:show.no-hover, .tooltip.sm\:show.no-focus  {
 	 pointer-events: auto;

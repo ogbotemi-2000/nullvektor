@@ -260,116 +260,45 @@
   </style>
 </head>
 
-<body onanimationend="if(_debug) return; let cls=['bg-red-400','bg-yellow-500','bg-near-black']; qS('.scaffold>div',!0).forEach((div,i)=>delay(_=>div.classList.add(cls[i]), 750 * i)), delay(_=>event.target==this&&preload(),1e3)"><!-- noise background -->
-  <aside class="hiddens absolute inset-0 backdrop-blur-xl backdrop-filter" style="background-image: url('./noise.svg')"></aside><!-- scaffold preloader -->
-  
-  <aside class="z-2 text-white inset-0 scaffold fixed">
-    <div class="inset-0 absolute transform-gpu" style="--delay: 280ms;"></div>
-    <div class="inset-0 absolute transform-gpu" style="--delay: 150ms;"></div>
-    <div class="inset-0 absolute text-center flex items-center justify-center intro flex-col transform-gpu" style="--delay: 0ms;" ontransitionend="let phiz=Abbr.to(this,['lEC','pES']); event.propertyName=='transform'&&(event.target==phiz ? (new Gradient, ({ canvas: 'canvas#gradient', colors: ['#000', '#aaa', '#282828'] })) : event.target==this&&(delay(_=>qS('nav',!0).forEach(nav=>Abbr.to(nav,'cL').add('show')), 600), enter(), togl, (gradient, ['opacity-80'])))">
-      <div class="pointer-events-none bg-gradient-to-br from-blue-900 via-red-900 to-yellow-500 opacity-50 absolute inset-0 z-1 p-4"></div>
-      <header>
-        <button style='--tw-bg-opacity:.3' class="bg-white pointer-events-auto text-current border-r border-current p-3 ripple absolute tooltip no-hover -slide no-focus" onclick="document.documentElement.classList.add('preloaded')">enter<i class="fa fa-arrow-right ml-2"></i></button>
-        <h3 class="inline-block mx-5 text-lg opacity-50 font-semibold">TL:DR;</h3>
-        <button class="text-current border-l border-current p-3 pointer-events-auto ripple relative">contact</button>
-      </header>
-      
-      <h2 class="mt-3 sm:items-center items-end flex">
-        <div class="lg:-mt-10 sm:scale-125 md:scale-100 transform scale-150 precise-typo-1 relative">N<div class="duration-500 ease-out inset-1 absolute mix-blend-difference text-green-100" style="--tw-bg-opacity: 0.3">N</div>
-        </div>
-        <div class="md:ml-5 ml-8 text-2xl text-left tooltip -slide no-hover absolute" style="z-index:unset">ull<p>vektor</p>
-        </div>
-      </h2>
-      <p style="z-index:unset" class="lg:-mt-8 tooltip -slide-y no-hover absolute pt-5 pb-12 md:pt-0">Mobile monitoring and tracking software • FOR</p>
-      <section class="sm:w-96 w-5/6 items-center flex tooltip -slide no-hover absolute mb-5 no-focus">
-        <hr class="border-0 h-px bulge-right flex-1">
-        <ul class="h-20 text-sm pt-20 overflow-hidden relative z-1 relative font-mono text-center mx-3" onanimationiteration="let ch=this.children, t=event.target, id=dev.skills.indexOf(t.textContent); t.textContent = dev.skills[(id + ch.length) % dev.skills.length]" style="--h: 5rem;height:var(--h);padding-top:var(--h)">
+<body onanimationended="if(_debug) return; let cls=['bg-red-400','bg-yellow-500','bg-near-black']; qS('.scaffold>div',!0).forEach((div,i)=>delay(_=>div.classList.add(cls[i]), 750 * i)), delay(_=>event.target==this&&preload(),1e3)">
+    
+  <canvas id="gradient" class="opacity-0 w-full h-full fixed bg-white duration-300 ease-out" ontransitionended="event.propertyName=='opacity'&&enter()"></canvas>
+
+  <main class="text-white bg-n-black">
+    <section>
+      <main class="relative flex items-center vh-full">
+       <section class="sm:border-r border-dashed border-current flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start justify-center flex-col">
+        <h1 style='line-height:0.8' class='break-all relative sm:tracking-tighter font-semibold text-center precise-typo-1 italic'>
+          NULL<span class=sm:block></span>VEKTOR
+          <div style="animation:anim-round .8s ease-out infinite; --_reach: calc(-1*var(--reach)); --reach: 1px;" class="inset-0.5 absolute mix-blend-difference text-gray-900 sm:text-white" style="--tw-bg-opacity: 0.3">NULL<span class=sm:block></span>VEKTOR</div>
+        </h1>
+        <ul class="mt-5 sm:text-2xl mx-6 [&>*]:relative sm:static relative font-mono">
+          <aside style='position: absolute' class='absolute decorate out inset-0'>
+            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -left-1/4 absolute sm:p-60 p-28 rounded-full bg-yellow-100"></div>
+            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -right-1/4 sm:-right-1/2 absolute p-28 sm:p-60 rounded-full bg-black"></div>
+            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x); left:18%" class="shadow top-1/2 duration-300 ease-out absolute p-28 sm:top-1/4 sm:p-60 rounded-full bg-gray-300"></div>
+          </aside>
+          <li>Remote Access Management</li>
+          <li>Media Access</li>
+          <li>User Data Tracking</li>
+          <li>Location Tracking</li>
+          <li>Social Media Access</li>
+          <li>Hands-free Target Phone Access</li>
+          <li>Unlimited Access</li>
         </ul>
-        <hr class="border-0 h-px bulge-left flex-1">
-      </section>
-      
-      <div class="text-sm tooltip -slide-y no-hover mx-10 absolute" style="z-index:unset">
-        with <a class='underline'>proven testimonials</a>
-      </div>
-      
-      <div class="w-1/5 sm:w-36 mx-auto overflow-hidden mb-3">
-        <hr class="mt-2 h-1 border-0 rounded-full bg-green-100 to-fro">
-      </div>
-    </div>
-  </aside>
-  
-  <main class="text-white bg-near-black relative overflow-x-hidden vh-full overflow-scroll">
-    <canvas id="gradient" class="w-full h-full fixed bg-white duration-300 ease-out" ontransitionend="event.propertyName=='opacity'&&enter()"></canvas>
-    <section class="vh-full relative">
-      <!-- main hero content -->
-      <main class="pt-20 flex flex-col justify-around relative h-full text-center sm:text-left tooltip no-hover -slide-y">
-        <section class='mx-4 sm:mt-10'>
-          <h2 style="--index:2" class="rotext">
-            <div class="relative sm:text-6xl text-4xl duration-300 ease-out">
-              Nullvektor - Ethical Espionage
-              <div class='duration-300 ease absolute inset-0 ml-0.5 mt-0.5 text-black text-glitch'>Nullvektor - Ethical Espionage</div>
-            </div>
-          </h2>
-          <ul class='w-5/6 sm:mx-0 mx-auto text-left mt-3 sm:space-y-4 sm:mt-6 text-base sm:w-2/3 sm:text-3xl'>
-            <li>Remotely manage devices you provide access to - management from beyond the confines of a device</li>
-            <hr class='my-2 mx-auto rounded-full border-0 bg-current w-5 p-0.5'>
-            <li>Access the media - videos, pictures etc., on the devices you remotely manage</li>
-           </ul>
-          <section class="mt-5 text-lg sm:text-xl space-x-1 [&>*]:rounded-inherit rounded-xl [&>*]:p-2">
-          <button class='bg-green-100 sm:text-lg text-green-600'><i class='fa fa-check'></i> ethically</button>
-          <button class='bg-yellow-100 sm:text-lg text-yellow-600'><i class='fa fa-trace'></i>leaves no trace</button>
-          <button class='bg-white sm:text-lg text-black'><i class='fa fa-dot'></i>request a demo</button>
-          </section>
-        </section>
-       
-        <aside class="p-5 [&>*]:rounded-inherit rounded-full [&>*]:relative sm:flex sm:justify-center">
-          <!--   section for controls and progress of showcases -->
-          
-          <button class="ripple relative border-current border p-1" onclick="Abbr.to(this,['nES','cL']).toggle('circle-paused'), qS('svg',!0,this).forEach(ch=>togl(ch,'show'))">
-            <div class="relative flex-col flex items-center justify-center">
-              <svg viewBox="0 0 512 512" class="fill-current m-auto p-2 w-10 tooltip no-hover no-focus no-focus-within -slide">
-                <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path>
-              </svg>
-              <svg viewBox="0 0 448 512" class="fill-current p-2 w-8 absolute top-0.5 tooltip no-hover no-focus no-focus-within slide show">
-                <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
-              </svg>
-            </div>
-          </button>
-          <main onclick="let btn=event.target, i=[].indexOf.call(this.children,btn), mckp=mockups[i]?.split(':'); if(btn.tagName!=='BUTTON') return; mckp[0], loadMockups(i,src=>{})" onanimationiteration="let c=event.target, n=Abbr.to(Abbr.to(c,['pN','pN','nES'],!0) || this, {3:'fEC'}); [c,n].forEach((el,i)=>Abbr.to(el,'cL')[cLs(i)]('path'))" class="flex justify-center flex-wrap [&>*]:relative [&>*]:rounded-full sm:w-80">
-            <button class="ripple">
-              <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
-                <!-- Left Circle -->
-                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32" class="path"></circle>
-              </svg>
-              <span class="absolute inset-0 text-xl">•</span></button>
-              <button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
-                <!-- Left Circle -->
-                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32"></circle>
-              </svg>
-              <span class="absolute inset-0 text-xl">•</span></button><button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
-                <!-- Left Circle -->
-                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
-              </svg>
-              <span class="absolute inset-0 text-xl">•</span></button><button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
-                <!-- Left Circle -->
-                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
-              </svg>
-              <span class="absolute inset-0 text-xl">•</span></button>
-              <button class="ripple"><svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12">
-                <!-- Left Circle -->
-                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
-              </svg>
-              <span class="absolute inset-0 text-xl">•</span></button>
-          </main>
-        </aside>
-        <aside style='line-height:0.88' class='precise-typo-1 -ml-10 pointer-events-none sm:right-0 absolute bottom-3 sm:bottom-0 font-bold opacity-30'>
-          <span class="sm:block">N</span><span class="sm:block">U</span><span class="sm:block">L</span><span class="sm:block">L</span><span class="sm:block">V</span><span class="sm:block">E</span><span class="sm:block">K</span><span class="sm:block">T</span><span class="sm:block">O</span><span class="sm:block">R</span>
-        </aside>
+       </section>
+       <figure style='z-index:auto;' class="flex flex-1 h-full left-0 tooltip no-hover no-focus -slide-y sm:show absolute sm:relative">
+         <aside style="background-image: url('./img/hero-bg.jpeg')" class='blur filter absolute bg-center inset-0'></aside>
+         <img src="img/hero-bg.jpeg" class="relative border-2 border-gray-300 shadow rounded-3xl my-auto h-auto w-full">
+       </figure>
+       <!-- hero background hidden on large viewports -->
+       <aside style="background-image: url('./img/hero-bg.jpeg')" class='absolute bg-contain bg-no-repeat bg-center inset-0 sm:hidden'></aside>
+       <!-- noise background -->
+      <aside class="border pointer-events-none absolute inset-0 backdrop-blur-sm backdrop-filter" style="background-image: url('./noise.svg')"></aside>
       </main>
     </section>
-    <section class="vh-full relative border border-current"></section>
-    
-    <nav id="growShrink" class="text-center fixed tooltip -slide-y no-hover no-focus text-sm top-2 left-0 right-0">
+  </main>
+    <nav id="growShrink" class="text-center text-white fixed tooltip -slide-y show no-hover no-focus text-sm bottom-2 left-0 right-0">
       <div style="--px:0.5em; --py:0.5em; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.5)" class="rounded-full bg-black [&>*]:align-middle rounded-inherit [&>*]:rounded-inherit inline-block [&>*]:p-xy backdrop-filter backdrop-blur p-1 lg:p-3 sm:p-2 cursor-pointer">
         <a class="ripple hover:bg-white relative" onclick="document.documentElement.classList.remove('preloaded')">
           <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
@@ -396,13 +325,13 @@
         </a>
         <div class="text-center bg-inherit lg:absolute lg:invisible" style="padding:0">
           <button class="hover:bg-gray-300 ripple relative text-current" style="border-color: currentcolor;">•••</button>
-          <div style="padding:0px; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.8); " class="text-sm bg-black">
+          <div style="white-space:normal; padding:0px; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.8); " class="bottom-full text-sm bg-black">
             <div></div>
           </div>
         </div>
       </div>
     </nav>
-  </main>
+    
   <script>
     let loadImgs = (srcs, invk, all) => {
         let count = 0;
@@ -416,12 +345,6 @@
           srcs = N(+itm[0]).map((n, nm) => '/mockups/' + ((nm = itm[1].split('.'))[0] += '-' + n + '.' + nm[1]));
         srcs[0] ||= '/mockups/' + mockups[i], loadImgs(srcs, invk, all)
       };
-    /*handles animations and interactions on page after scaffold */
-    function enter() {
-      qS('.scaffold').classList.toggle('z-2'), qS('.scaffold').classList.add('bg-near-black');
-      let secs = qS('main>section', !0);
-      ['.done', '.rotext', '.tooltip'].forEach((s, i) => qS(s, 0, secs[0])?.classList[cLs(i)](i ? 'show' : 'done'))
-    }
   </script>
   <script>
     function onScroll(page, mthd, sTop, t, nav, heap) {
@@ -435,43 +358,11 @@
       return t.lastY / (page.scrollHeight || innerHeight)
     }
     let DOMLoaded, ratio;
-    w_Ev_dom(_ => {
-      enter,
-      Ev('scroll')(qS('main'))(function(ev) {
-          requestAnimationFrame(_ => {
-            ratio = onScroll(this), console.log('::SCROLL-RATIO::', ratio)
-          })
-        }), DOMLoaded = !0,
-        animations.addRippleAnimations(),
-        _debug || new Gradient({
-          canvas: 'canvas#gradient',
-          colors: ['#1e3a8a', '#7f1d1d', '#f59e0b']
-        })
+    w_Ev_dom(_=>{
+      new Gradient({ canvas: 'canvas#gradient', colors: ['#000000', '#aaaaaa', '#282828'] }),
+      Ev('scroll'), DOMLoaded = !0, animations.addRippleAnimations()
     })
-    let dev = {},
-      preload =_=> fetch('data.json').then(r => r.json()).then(data => {
-        let vw = innerWidth,
-          rz, h = qS('.scaffold h2'),
-          hr = qS('.scaffold div>hr'),
-          ul = Abbr.to(h, { 2: 'nES' }).children[1];
-        togl(Abbr.to(h, { 2: 'fEC' }), ['md:m-4', 'm-1.5']), togl(Abbr.to(h, 'lEC'), ['absolute', 'show']),
-          
-          togl(hr, ['', '-x'].map(s => 'to-fro' + s)), /*slicing out first three skils because only three can appear without overlays in vertical marquee*/
-          ul.innerHTML = (dev = data).skills.slice(0, 3).map((e, i, t) => `<li class=truncate>${e}</li>`).join(''), w_Ev_rz(rz = _vw => {
-            (_vw &&= [500, 640, 768, 1024].find(w => w > innerWidth)) !== vw && (vw = _vw, console.log('::RERUN::', vw), [].forEach.call(ul.children, (e, i, es, t = 4, it, s, n, v, r) => {
-              v = (r = el => ['Top', 'Height'].reduce((_n, p) => el['offset' + p] + _n, 0))(es[0]) / t, //velocity
-                s = r(e), it = s / v, //time interpolated by proportion
-                e.style.cssText = `--px:-${s}px; --t:${i?it:t}s`
-            }))
-          }), Abbr.to(ul, 'pN').ontransitionend = function() {
-            rz(), ul.classList.add('marquee-y'), togl(hr, 'rounded-full'), /*use loaded state of other assets on page */
-            delay(_=>{
-              new Gradient({ canvas: 'canvas#gradient', colors: ['#000000', '#aaaaaa', '#282828'] }),
-              togl(hr, ['to-fro-x', 'rounded-full']), Abbr.to(h, ['pES', 'fEC', 'cL']).replace('absolute', 'show')
-            }, 500)
-          },
-          ['', 'p', 'n'].forEach((s, i) => delay(_ => togl(Abbr.to(ul, ['pN', s + 'ES']), ['absolute', 'show']), 1e3 + (i > 1) * 2e3))
-      })
+
   </script>
 </body>
 </html>
