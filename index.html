@@ -265,23 +265,22 @@
   <canvas id="gradient" class="opacity-0 w-full h-full fixed bg-white duration-300 ease-out" ontransitionended="event.propertyName=='opacity'&&enter()"></canvas>
 
   <main class="text-white bg-n-black">
-    <section>
-      <main class="relative flex items-center vh-full">
-       <section class="sm:border-r border-dashed border-current flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start justify-center flex-col">
-        <h1 style='line-height:0.8' class='z-1 break-all relative sm:tracking-tighter font-semibold text-center precise-typo-1 italic'>
+    <section class="relative flex items-center vh-full">
+       <section style="flex: 1 1 20%;" class="text-base sm:text-2xl sm:border-r border-dashed border-current flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start justify-center flex-col">
+        <h1 style='line-height:0.8' class='mb-3 z-1 break-all tracking-tighter relative font-semibold text-center precise-typo-1 italic'>
           NULL<span class=sm:block></span>VEKTOR
-            <div style="animation:anim-round .8s ease-out infinite; --_reach: calc(-1*var(--reach)); --reach: 1px;" class="inset-0.5 absolute sm:mix-blend-difference text-white" style="--tw-bg-opacity: 0.3">NULL<span class=sm:block></span>VEKTOR</div>
+            <div style="animation:anim-round .8s ease-out infinite; --_reach: calc(-1*var(--reach)); --reach: 1.5px;" class="inset-0.5 sm:inset-0 absolute sm:mix-blend-difference text-white" style="--tw-bg-opacity: 0.3">NULL<span class=sm:block></span>VEKTOR</div>
         </h1>
-        <ul class="mt-5 sm:text-2xl mx-6 [&>*]:relative sm:static relative font-mono">
+        <ul class="space-y-1 sm:space-y-2.5 md:text-3xl m-6 [&>*]:relative sm:static relative font-mono">
           <aside style='position: absolute' class='absolute decorate out inset-0'>
-            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -left-1/4 absolute sm:p-40 p-20 rounded-full bg-yellow-100">
-            <img src="icons/hard-drive.svg" class="w-10 filter invert opacity-30">
+            <div style="--tw-bg-opacity: 0.4; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -left-1/4 absolute sm:p-40 p-20 rounded-full bg-black">
+            <img src="icons/hard-drive.svg" class="w-10 filter invert opacity-30 sm:opacity-50">
             </div>
-            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -right-1/4 sm:-right-1/2 absolute p-20 sm:p-40 rounded-full bg-black">
-              <img src="icons/diagram-next.svg" class="w-10 filter invert opacity-30">
+            <div style="--tw-bg-opacity: 0.5; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -right-1/4 sm:-right-1/2 absolute p-20 sm:p-40 rounded-full bg-yellow-200">
+              <img src="icons/diagram-next.svg" class="w-10 filter invert opacity-50">
             </div>
-            <div style="--tw-bg-opacity: 0.3; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x); left:18%" class="shadow top-1/2 duration-300 ease-out absolute p-20 sm:top-1/4 sm:p-40 rounded-full bg-gray-300">
-              <img src="icons/arrows-down-people.svg" class="w-10 filter invert opacity-30">
+            <div style="--tw-bg-opacity: 0.5; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x); left:18%" class="shadow top-1/2 duration-300 ease-out absolute p-20 sm:top-1/4 sm:transform sm:-translate-y-40 sm:p-40 rounded-full bg-gray-300">
+              <img src="icons/arrows-down-people.svg" class="w-10 filter invert opacity-50">
             </div>
           </aside>
           <li>Remote Access Management</li>
@@ -292,17 +291,47 @@
           <li>Hands-free Target Phone Access</li>
           <li>Unlimited Access</li>
         </ul>
+        <br><br><br>
+        <div class="m-6 [&>*]:inline-block [&>*]:rounded-full">Available For: 
+          <img src="/icons/apple.svg" class="bg-white p-4 w-16">
+          <img src="/icons/android.svg" class="bg-green-300 p-4 w-16">
+        </div>
        </section>
-       <figure style='z-index:auto;' class="flex flex-1 h-full left-0 tooltip no-hover no-focus -slide-y sm:show absolute sm:relative">
-         <aside style="background-image: url('./img/hero-bg.jpeg')" class='blur filter absolute bg-center inset-0'></aside>
-         <img src="img/hero-bg.jpeg" class="relative border-2 border-gray-300 shadow rounded-3xl my-auto h-auto w-full">
+       
+       <figure style='z-index:auto' class="flex flex-1 h-full left-0 absolute sm:relative">
+         <aside style="background-image: url('./img/hero-bg.jpeg')" class='absolute bg-center inset-0'></aside>
+         <img src="img/hero-bg.jpeg" style="--tw-blur: blur(3px)" class="blur filter relative border-2 border-gray-300 shadow rounded-3xl my-auto h-auto w-full">
        </figure>
-       <!-- hero background hidden on large viewports -->
-       <aside style="background-image: url('./img/hero-bg.jpeg')" class='absolute bg-contain bg-no-repeat bg-center inset-0 sm:hidden'></aside>
        <!-- noise background -->
-      <aside class="border pointer-events-none absolute inset-0 backdrop-blur-sm backdrop-filter" style="background-image: url('./noise.svg')"></aside>
-      </main>
+      <aside class="pointer-events-none absolute inset-0  backdrop-blur sm:backdrop-filter" style="background-image: url('./noise.svg')"></aside>
     </section>
+    <!-- start of second section -->
+    <article class="vh-full">
+      <h2 class="text-center precise-typo-1 tracking-tight">Key Features</h2>
+      <section class="flex space-y-2 flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
+        <figure class='pr-3 items-center bg-white flex'>
+          <div class="mr-3 p-3 border-r border-gray-300">
+            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 w-20">
+            <img src="/icons/phone-volume.svg" class="p-0.5">
+          </div>
+          <figcaption>
+            Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts
+          </figcaption>
+        </figure>
+        
+        <figure class='pr-3 items-center bg-white flex'>
+          <div class="mr-3 p-3 border-r border-gray-300">
+            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 w-20">
+            <img src="/icons/phone-volume.svg" class="p-0.5">
+          </div>
+          <figcaption>
+            Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts
+          </figcaption>
+        </figure>
+        
+      </section>
+    </article>
+    
   </main>
     <nav id="growShrink" class="text-center text-white fixed tooltip -slide-y show no-hover no-focus text-sm bottom-2 left-0 right-0">
       <div style="--px:0.5em; --py:0.5em; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.5)" class="rounded-full bg-black [&>*]:align-middle rounded-inherit [&>*]:rounded-inherit inline-block [&>*]:p-xy backdrop-filter backdrop-blur p-1 lg:p-3 sm:p-2 cursor-pointer">
