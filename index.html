@@ -22,6 +22,9 @@
   <script src="/js/Gradient.js"></script>
  
   <style>
+    .text-n-black {
+      color: #282828;
+    }
     .circle-paused svg circle {
       animation-play-state: paused
     }
@@ -299,37 +302,59 @@
        </section>
        
        <figure style='z-index:auto' class="flex flex-1 h-full left-0 absolute sm:relative">
-         <aside style="background-image: url('./img/hero-bg.jpeg')" class='absolute bg-center inset-0'></aside>
-         <img src="img/hero-bg.jpeg" style="--tw-blur: blur(3px)" class="blur filter relative border-2 border-gray-300 shadow rounded-3xl my-auto h-auto w-full">
+         <aside style="background-image: url('./img/hero-bg.jpeg')" class='rounded-3xl absolute bg-center inset-0'></aside>
+         <img src="img/hero-bg.jpeg" style="--tw-blur: blur(2px)" class="blur filter relative border-2 border-gray-300 shadow rounded-3xl my-auto h-auto w-full">
        </figure>
        <!-- noise background -->
-      <aside class="pointer-events-none absolute inset-0  backdrop-blur sm:backdrop-filter" style="background-image: url('./noise.svg')"></aside>
+      <aside class="pointer-events-none absolute inset-0 rounded-3xl sm:backdrop-blur sm:backdrop-filter" style="background-image: url('./noise.svg')"></aside>
     </section>
+    
+    <aside style="background-image: url('./noise.svg'); background-clip:text" class="text-transparent my-10 font-bold tracking-tight precise-typo-1 italic overflow-hidden"><pre>NULL•VEKTOR</pre></aside>
     <!-- start of second section -->
-    <article class="vh-full">
-      <h2 class="text-center precise-typo-1 tracking-tight">Key Features</h2>
-      <section class="flex space-y-2 flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
-        <figure class='pr-3 items-center bg-white flex'>
-          <div class="mr-3 p-3 border-r border-gray-300">
-            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 w-20">
-            <img src="/icons/phone-volume.svg" class="p-0.5">
+    
+    <article class="flex flex-col relative py-16">
+      <h2 class="mt-auto text-center text-3xl sm:text-5xl relative">
+        Key Features
+      </h2>
+      <section class="mb-auto [&>*]:p-2 flex sm:flex-nowrap sm:w-5/6 sm:mx-auto flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
+        <figure class='m-2 bg-white flex'>
+          <div class="relative mr-3 pr-3">
+            <div class="w-px h-full bg-gray-600 absolute right-0"></div>
+            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 p-0.5 w-20">
+            <img src="/icons/phone-volume.svg" class="p-1 w-16">
           </div>
           <figcaption>
             Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts
           </figcaption>
         </figure>
         
-        <figure class='pr-3 items-center bg-white flex'>
-          <div class="mr-3 p-3 border-r border-gray-300">
-            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 w-20">
-            <img src="/icons/phone-volume.svg" class="p-0.5">
+         <figure class='flex-col m-2 bg-white flex'>
+          <div class="space-x-2 relative mb-2 pb-1 flex justify-around">
+            <div class="w-full h-px bg-gray-600 absolute bottom-0"></div>
+            <img src="/icons/whatsapp.svg" class="sm:p-2 p-1.5 h-10">
+            <img src="/icons/facebook-f.svg" class="sm:p-2.5 h-10 p-2">
+            <img src="/icons/instagram.svg" class="p-1 h-10 sm:p-2">
+            <img src="/icons/snapchat.svg" class="sm:p-2 p-1 h-10">
+            <img src="/icons/tiktok.svg" class="sm:p-2 p-1.5 h-10">
           </div>
           <figcaption>
-            Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts
+            Read and monitor activities from all popular social apps like WhatsApp, Instagram, without being detected
           </figcaption>
         </figure>
         
+        <figure class='m-2 bg-white flex'>
+          <div class="space-y-1 relative mr-3 pr-3">
+            <div class="w-px h-full bg-gray-600 absolute right-0"></div>
+            <img src="/icons/photo-film.svg" class="p-0.5 w-20">
+            <img src="/icons/music.svg" class="p-1 w-16">
+            <img src="/icons/mobile.svg" class="p-1 w-16">
+          </div>
+          <figcaption>
+            View all media files, saved or shared on the target device including photos, videos, music and more
+          </figcaption>
+        </figure>
       </section>
+      <div class="rounded-3xl pointer-events-none bg-gradient-to-br from-transparent to-black opacity-50 absolute inset-0"></div>
     </article>
     
   </main>
