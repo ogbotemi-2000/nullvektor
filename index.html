@@ -263,21 +263,21 @@
   </style>
 </head>
 
-<body onanimationended="if(_debug) return; let cls=['bg-red-400','bg-yellow-500','bg-near-black']; qS('.scaffold>div',!0).forEach((div,i)=>delay(_=>div.classList.add(cls[i]), 750 * i)), delay(_=>event.target==this&&preload(),1e3)">
-    
+<body>
+   <!-- 
   <canvas id="gradient" class="opacity-0 w-full h-full fixed bg-white duration-300 ease-out" ontransitionended="event.propertyName=='opacity'&&enter()"></canvas>
-
-  <main class="text-white bg-n-black">
-    <section class="relative flex items-center vh-full">
-       <section style="flex: 1 1 20%;" class="text-base sm:text-2xl sm:border-r border-dashed border-current flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start justify-center flex-col">
-        <h1 style='line-height:0.8' class='mb-3 z-1 break-all tracking-tighter relative font-semibold text-center precise-typo-1 italic'>
+   -->
+  <main class="font-caps text-white bg-n-black">
+    <section id=top class="relative flex items-center vh-full">
+       <section style="flex: 1 1 20%;" class="text-base sm:mx-6 pt-20 sm:text-2xl flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start flex-col">
+        <h1 style='line-height:0.8' class='font-sans mb-10 z-1 break-all tracking-tighter relative font-semibold text-center precise-typo-1 italic'>
           NULL<span class=sm:block></span>VEKTOR
             <div style="animation:anim-round .8s ease-out infinite; --_reach: calc(-1*var(--reach)); --reach: 1.5px;" class="inset-0.5 sm:inset-0 absolute sm:mix-blend-difference text-white" style="--tw-bg-opacity: 0.3">NULL<span class=sm:block></span>VEKTOR</div>
         </h1>
-        <ul class="space-y-1 sm:space-y-2.5 md:text-3xl m-6 [&>*]:relative sm:static relative font-mono">
+        <ul class="space-y-1 sm:space-y-2.5 md:text-3xl m-6 [&>*]:relative sm:static relative">
           <aside style='position: absolute' class='absolute decorate out inset-0'>
             <div style="--tw-bg-opacity: 0.4; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -left-1/4 absolute sm:p-40 p-20 rounded-full bg-black">
-            <img src="icons/hard-drive.svg" class="w-10 filter invert opacity-30 sm:opacity-50">
+              <img src="icons/hard-drive.svg" class="w-10 filter invert opacity-30 sm:opacity-50">
             </div>
             <div style="--tw-bg-opacity: 0.5; --tw-scale-x:1.3; --tw-scale-y:var(--tw-scale-x);" class="shadow bottom-1/4 duration-300 ease-out -right-1/4 sm:-right-1/2 absolute p-20 sm:p-40 rounded-full bg-yellow-200">
               <img src="icons/diagram-next.svg" class="w-10 filter invert opacity-50">
@@ -286,13 +286,13 @@
               <img src="icons/arrows-down-people.svg" class="w-10 filter invert opacity-50">
             </div>
           </aside>
-          <li>Remote Access Management</li>
-          <li>Media Access</li>
-          <li>User Data Tracking</li>
-          <li>Location Tracking</li>
-          <li>Social Media Access</li>
-          <li>Hands-free Target Phone Access</li>
-          <li>Unlimited Access</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Remote Access Management</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Media Access</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">User Data Tracking</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Location Tracking</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Social Media Access</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Hands-free Target Phone Access</li>
+          <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Unlimited Access</li>
         </ul>
         <br><br><br>
         <div class="m-6 [&>*]:inline-block [&>*]:rounded-full">Available For: 
@@ -309,36 +309,44 @@
       <aside class="pointer-events-none absolute inset-0 rounded-3xl sm:backdrop-blur sm:backdrop-filter" style="background-image: url('./noise.svg')"></aside>
     </section>
     
-    <aside style="background-image: url('./noise.svg'); background-clip:text" class="text-transparent my-10 font-bold tracking-tight precise-typo-1 italic overflow-hidden"><pre>NULL•VEKTOR</pre></aside>
     <!-- start of second section -->
     
-    <article class="flex flex-col relative py-16">
-      <h2 class="mt-auto text-center text-3xl sm:text-5xl relative">
-        Key Features
+    <article id="features" class="flex flex-col relative py-16">
+      <h2 class="mt-auto text-center text-3xl sm:text-5xl">
+        KEY FEATURES
       </h2>
-      <section class="mb-auto [&>*]:p-2 flex sm:flex-nowrap sm:w-5/6 sm:mx-auto flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
+      <section class="mb-auto [&>*]:p-2 flex sm:w-3/4 sm:mx-auto flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
         <figure class='m-2 bg-white flex'>
-          <div class="relative mr-3 pr-3">
+          <div class="relative flex flex-col justify-between pr-3 mr-3">
             <div class="w-px h-full bg-gray-600 absolute right-0"></div>
-            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 p-0.5 w-20">
-            <img src="/icons/phone-volume.svg" class="p-1 w-16">
+            <img src="/icons/magnifying-glass-chart.svg" class="mb-6 w-20">
+            <img src="/icons/phone-volume.svg" class="p-1 w-20">
           </div>
           <figcaption>
-            Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts
+            Allow users to read all sent and received <strong>messages</strong> and <strong>calls</strong> including deleted ones and contacts.
+            <p class="inline-block sm:relative tooltip no-hover no-focus absolute sm:show -slide-y">
+              The deep search and analysis techniques ised by us ensure that deeply hidden call data and logs are dug up in a chronological order. Devices retain all call sessions info which we can access and read
+            </p>
           </figcaption>
         </figure>
         
          <figure class='flex-col m-2 bg-white flex'>
           <div class="space-x-2 relative mb-2 pb-1 flex justify-around">
             <div class="w-full h-px bg-gray-600 absolute bottom-0"></div>
-            <img src="/icons/whatsapp.svg" class="sm:p-2 p-1.5 h-10">
-            <img src="/icons/facebook-f.svg" class="sm:p-2.5 h-10 p-2">
-            <img src="/icons/instagram.svg" class="p-1 h-10 sm:p-2">
-            <img src="/icons/snapchat.svg" class="sm:p-2 p-1 h-10">
-            <img src="/icons/tiktok.svg" class="sm:p-2 p-1.5 h-10">
+            <img src="/icons/whatsapp.svg" class="p-1.5 h-10">
+            <img src="/icons/facebook-f.svg" class="h-10 p-2">
+            <img src="/icons/instagram.svg" class="p-1 h-10 sm:p-1.5">
+            <img src="/icons/snapchat.svg" class="sm:p-1.5 p-1 h-10">
+            <img src="/icons/telegram.svg" class="sm:p-1.5 p-1 h-10">
+            <img src="/icons/tiktok.svg" class="p-1.5 h-10">
           </div>
           <figcaption>
-            Read and monitor activities from all popular social apps like WhatsApp, Instagram, without being detected
+              Read and monitor activities from all popular social apps like WhatsApp, Instagram, without being detected
+            <p class="inline-block sm:relative tooltip no-hover no-focus absolute sm:show -slide-y">
+              Social media apps equally collect user data based on activity, location etc.,  and it is this collected data that we
+              directly access foe comolete monitoring. The integrity of the collected data is guaranteed since social media apps collect useful, non-redundant
+              data which can be parsed to obtain a complete and valid profile of a given user
+            </p>
           </figcaption>
         </figure>
         
@@ -347,53 +355,133 @@
             <div class="w-px h-full bg-gray-600 absolute right-0"></div>
             <img src="/icons/photo-film.svg" class="p-0.5 w-20">
             <img src="/icons/music.svg" class="p-1 w-16">
-            <img src="/icons/mobile.svg" class="p-1 w-16">
+            <img src="/icons/video.svg" class="p-1 w-16">
           </div>
           <figcaption>
-            View all media files, saved or shared on the target device including photos, videos, music and more
+            View all media files, saved or shared on the target device including photos, videos, music and more.
+            <p class="inline-block sm:relative tooltip no-hover no-focus absolute sm:show -slide-y">
+              Access files without any prior setup or configuration with no limitations, no one-trick-pony - the backdoor access is reliable and consistent
+            </p>
           </figcaption>
         </figure>
       </section>
-      <div class="rounded-3xl pointer-events-none bg-gradient-to-br from-transparent to-black opacity-50 absolute inset-0"></div>
+      <div class="rounded-3xl pointer-events-none bg-gradient-to-br from-transparent to-black opacity-70 absolute inset-0"></div>
     </article>
    
    <!-- start of third section -->
-   <section class="rounded-3xl mb-32 relative overflow-hidden vh-full flex m-auto">
-     <main class="bg-black transform -skew-x-12 flex-1"></main>
-     <aside class="-mt-10 precise-typo-1 absolute opacity-20">
+   <section id="testimonials" class="rounded-3xl mb-32 relative overflow-hidden vh-full flex m-auto">
+     <main class="w-full sm:text-xl md:text-3xl p-5 flex flex-col items-center justify-center flex-1">
+       <aside class="absolute inset-0 bg-gradient-to-b from-black to-transparent transform -skew-x-12"></aside>
+       <h3 class="opacity-70 relative text-3xl sm:text-5xl">TESTIMONIALS</h3>
+       <main class="sm:w-2/3 md:w-1/2 transform -skew-x-12 px-8 relative">
+         <section class="tooltip no-hover no-focus no-focus-within absolute -slide-y left-0 top-0">
+           <h4>Jasmine</h4>
+           <p class="opacity-50">
+             Thank you, Nullvektor for consistently being so approachable and open-minded. Your friendly demeanor and willingness to listen and understand serve as a constant source of motivation. Your support and guidance have been especially meaningful to me during the recent account issue I encountered. Your willingness to assist and offer valuable advice speaks volumes about your character and the supportive environment you cultivate. I’m incredibly grateful to have someone like you. Your assistance played a crucial role in resolving my issues
+           </p>
+         </section>
+         <section class="tooltip no-hover no-focus no-focus-within absolute -slide-y left-0 top-0">
+           <h4>Bianca</h4>
+           <p class="opacity-50">
+             Having someone like you who’s not only a great innovator but also pulls his best to get the work done so beautifully needs nothing but appreciation. Nullvektor Thanks for the well off work you consistently bring your all and I truly appreciate that. Thank you for making corporate life so smooth. Proud to have you on our team. Great work as always.
+           </p>
+         </section>
+         <section class="tooltip no-hover no-focus no-focus-within show -slide-y left-0 top-0">
+           <h4>Thomas</h4>
+           <p class="opacity-50">
+             In the past year, I had noticed a significant change in my partner’s behavior. She was always spending too much time on the phone and she would try to hide it from me. After trying and failing to access the device, I tried Nullvektor and it turns out she was planning to run away from home with an older man she met on Snapchat. I confronted her about it and we talked about it. The man was arrested and I am lucky to have my partner with me. 
+           </p>
+         </section>
+       </main>
+       	<aside class="[&>*]:align-middle [&>*]:rounded-inherit rounded-full [&>*]:relative">
+          <!--   section for controls and progress of showcases -->
+          <button class="ripple border-current border p-0.5" onclick="Abbr.to(this,['nES','cL']).toggle('circle-paused'), qS('svg',!0,this).forEach(ch=>togl(ch,'show'))">
+            <div class="relative h-full flex">
+							<!-- play icon -->
+							<svg fill="currentColor" viewBox="0 0 512 512" class="m-auto p-2 w-10 tooltip no-hover no-focus no-focus-within -slide">
+                <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path>
+              </svg>
+							<!-- pause icon -->
+              <svg fill="currentColor" viewBox="0 0 448 512" class="p-3 m-auto w-10 absolute top-0 tooltip no-hover no-focus no-focus-within slide show">
+                <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
+              </svg>
+            </div>
+          </button>
+					
+            <main class="w-5/6 text-center inline-block [&>*]:relative [&>*]:rounded-full circle-pauseds" onclick="let btn=event.target, i=[].indexOf.call(this.children,btn), mckp=mockups[i]?.split(':'); if(btn.tagName!=='BUTTON') return; mckp[0], loadMockups(i,src=>{ })" onanimationiteration="let secs=Abbr.to(this,['pN', 'pES']), c=event.target, cs=qS(c.tagName.toLowerCase(), !0, this), j=cs.indexOf(c), n=Abbr.to(Abbr.to(c,['pN','pN','nES'],!0) || this, {3:'fEC'}); [c,n].forEach((el,i)=>Abbr.to(el,'cL')[cLs(i)]('path')), [qS('.show', 0, secs), (secs=secs.children)[j]].forEach(el=>togl(el, ['absolute', 'show']))">
+            <button class="ripple">
+              <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block mt-2.5 h-12 text-current">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32" class="path"></circle>
+              </svg>
+              <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
+            </button>
+            <button class="ripple">
+              <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block mt-2.5 h-12 text-current">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32"></circle>
+              </svg>
+              <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
+            </button>
+            <button class="ripple">
+              <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12 mt-2.5 text-current">
+                <!-- Left Circle -->
+                <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
+              </svg>
+              <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
+            </button>
+          </main>
+        </aside>
+     </main>
+     <aside style="background-image: url('./noise.svg'); background-clip:text" class="text-transparent top-0 -mt-7 precise-typo-1 absolute opacity-70">
        NULL
      </aside>
-     <aside class="-mb-10 precise-typo-1 bottom-0 right-0 absolute opacity-20">
+     <aside style="background-image: url('./noise.svg'); background-clip:text" class="text-transparent -mb-7 precise-typo-1 bottom-0 right-0 absolute opacity-70">
        VEKTOR
      </aside>
-   </section> 
+   </section>
+   
+   <section id=why class="mb-40 mx-10 text-xl sm:text-3xl text-center">
+     <h2 class="mb-5 opacity-70 text-center text-3xl sm:text-5xl">
+        WHY NULLVEKTOR?
+     </h2>
+     <ul class="text-left inline-block">
+        <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">100% protected and reliable</li>
+        <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Compatible with both android and IOS devices</li>
+        <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Supports all type of data</li>
+        <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Unlimited access</li>
+        <li><img src=/icons/circle-check.svg class="w-5 filter invert inline-block mr-2">Works without interrupting target device</li>
+     </ul>
+    </section>
   </main>
     <nav id="growShrink" class="text-center text-white fixed tooltip -slide-y show no-hover no-focus text-sm bottom-2 left-0 right-0">
-      <div style="--px:0.5em; --py:0.5em; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.5)" class="rounded-full bg-black [&>*]:align-middle rounded-inherit [&>*]:rounded-inherit inline-block [&>*]:p-xy backdrop-filter backdrop-blur p-1 lg:p-3 sm:p-2 cursor-pointer">
-        <a class="ripple hover:bg-white relative" onclick="document.documentElement.classList.remove('preloaded')">
+      <div style="--px:0.5em; --py:0.5em; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.3)" class="rounded-full bg-black [&>*]:align-middle rounded-inherit [&>*]:rounded-inherit inline-block [&>*]:p-xy backdrop-filter backdrop-blur p-1 lg:p-3 sm:p-2 cursor-pointer">
+        <a class="ripple hover:bg-white relative" href="#top">
           <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
             <div style="--tw-bg-opacity: 0.5; --tw-scale-x:1.1; --tw-scale-y:var(--tw-scale-x);" class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out"></div>
-          </div><span class="mx-2 relative"><i class="fa fa-arrow-left"></i> Nullvektor</span>
+          </div>
+          <span class="mx-2 relative">Nullvektor</span>
         </a>
-        <a class="hover:bg-white relative">
+        <a class="hover:bg-white relative" href="#features">
           <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
             <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
-          </div><span class="relative"><i class="fa fa-address-card"></i>&nbsp;contact&nbsp;us</span>
+          </div>
+          <span class="relative">Key&nbsp;Features</span>
         </a>
+        <span class="base:relative absolute"></span>
+        <a href="#testimonials" class="base:show fluid hover:bg-white relative">
+          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
+            <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
+          </div>
+          <span class="relative">Testimonials</span></a>
         <span class="sm:relative absolute"></span>
-        <a class="hover:bg-white relative fluid base:show">
+        <a href="#why" class="fluid sm:show hover:bg-white relative">
           <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
             <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
-          </div><span class="relative"><i class="fa fa-user"></i>&nbsp;testaments</span>
+          </div>
+          <span class="relative">Why&nbsp; Nullvektor?</span>
         </a>
-        <!--<span class="md:relative absolute"></span><a class="fluid md:show hover:bg-yellow-600 bg-yellow-500" data-i="3"><div class="out decorate inset-0 absolute tooltip" style="z-index: auto"><div class="bg-yellow-500 inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div></div><span class="relative"><i class="fa fa-font"></i><i class="fa fa-project-diagram"></i> assets</span></a>-->
-        <span class="md:relative absolute"></span>
-        <a class="fluid sm:show hover:bg-white relative">
-          <div class="out decorate inset-0 absolute tooltip" style="z-index: auto">
-            <div class="bg-white inset-0 absolute p-0 rounded-full duration-300 ease-out" style="--tw-bg-opacity: 0.5; --tw-scale-x:1.2; --tw-scale-y:var(--tw-scale-x);"></div>
-          </div><span class="relative"><i class="fa fa-icons"></i>&nbsp;about&nbsp;us</span>
-        </a>
-        <div class="text-center bg-inherit lg:absolute lg:invisible" style="padding:0">
+        <div class="text-center bg-inherit sm:absolute sm:invisible" style="padding:0">
           <button class="hover:bg-gray-300 ripple relative text-current" style="border-color: currentcolor;">•••</button>
           <div style="white-space:normal; padding:0px; --tw-bg-opacity:calc(var(--bg-opacity-pad) + 0.8); " class="bottom-full text-sm bg-black">
             <div></div>
@@ -415,8 +503,7 @@
           srcs = N(+itm[0]).map((n, nm) => '/mockups/' + ((nm = itm[1].split('.'))[0] += '-' + n + '.' + nm[1]));
         srcs[0] ||= '/mockups/' + mockups[i], loadImgs(srcs, invk, all)
       };
-  </script>
-  <script>
+
     function onScroll(page, mthd, sTop, t, nav, heap) {
       !(t = onScroll).lastY && (t.lastY = 0), sTop = page.scrollY || page.scrollTop, nav = qS('nav.topCta'),
         mthd = cLs, nav && ['show' /*, 'relative', 'absolute'*/ ]
@@ -427,10 +514,12 @@
         setTimeout(_ => t.lastY = sTop);
       return t.lastY / (page.scrollHeight || innerHeight)
     }
+    
     let DOMLoaded, ratio;
     w_Ev_dom(_=>{
-      new Gradient({ canvas: 'canvas#gradient', colors: ['#000000', '#aaaaaa', '#282828'] }),
-      Ev('scroll'), DOMLoaded = !0, animations.addRippleAnimations()
+      let html = document.documentElement;
+      if(html.style.backdropFilter === undefined) html.style.setProperty('--bg-opacity-pad', 0.7);
+      DOMLoaded = !0, animations.addRippleAnimations()
     })
 
   </script>
