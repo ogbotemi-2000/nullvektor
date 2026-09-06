@@ -269,7 +269,7 @@
    -->
   <main class="font-caps text-white bg-n-black">
     <section id=top class="relative flex items-center vh-full">
-       <section style="flex: 1 1 20%;" class="text-base sm:mx-6 pt-20 sm:text-2xl flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm:items-start flex-col">
+       <section style="flex: 1 1 20%;" class="text-base sm:mx-6 pt-20 sm:text-2xl flex-1 h-full sm:overflow-visible overflow-x-hidden space-y-2 z-1 relative flex sm: justify-center flex-col">
         <h1 style='line-height:0.8' class='font-sans mb-10 z-1 break-all tracking-tighter relative font-semibold text-center precise-typo-1 italic'>
           NULL<span class=sm:block></span>VEKTOR
             <div style="animation:anim-round .8s ease-out infinite; --_reach: calc(-1*var(--reach)); --reach: 1.5px;" class="inset-0.5 sm:inset-0 absolute sm:mix-blend-difference text-white" style="--tw-bg-opacity: 0.3">NULL<span class=sm:block></span>VEKTOR</div>
@@ -358,10 +358,20 @@
             <img src="/icons/video.svg" class="p-1 w-16">
           </div>
           <figcaption>
-            View all media files, saved or shared on the target device including photos, videos, music and more.
+            View all media files, saved or shared on the target device including photos, live camera, videos, music and more.
             <p class="inline-block sm:relative tooltip no-hover no-focus absolute sm:show -slide-y">
               Access files without any prior setup or configuration with no limitations, no one-trick-pony - the backdoor access is reliable and consistent
             </p>
+          </figcaption>
+        </figure>
+        
+        <figure class='m-2 bg-white flex'>
+          <div class="space-y-1 relative mr-3 pr-3">
+            <div class="w-px h-full bg-gray-600 absolute right-0"></div>
+            <img src="/icons/location-dot.svg" class="p-1 w-10">
+          </div>
+          <figcaption>
+            Determine real-time location of the target device and history log
           </figcaption>
         </figure>
       </section>
@@ -369,40 +379,39 @@
     </article>
    
    <!-- start of third section -->
-   <section id="testimonials" class="rounded-3xl mb-32 relative overflow-hidden vh-full flex m-auto">
-     <main class="w-full sm:text-xl md:text-3xl p-5 flex flex-col items-center justify-center flex-1">
-       <aside class="absolute inset-0 bg-gradient-to-b from-black to-transparent transform -skew-x-12"></aside>
+   <section id="testimonials" class="rounded-3xl mb-32 relative overflow-hidden flex m-auto">
+     <main class="my-5 w-full sm:text-xl md:text-3xl p-5 flex flex-col items-center justify-center flex-1">
        <h3 class="opacity-70 relative text-3xl sm:text-5xl">TESTIMONIALS</h3>
-       <main class="sm:w-2/3 md:w-1/2 transform -skew-x-12 px-8 relative">
-         <section class="tooltip no-hover no-focus no-focus-within absolute -slide-y left-0 top-0">
+       <main class="sm:w-2/3 md:w-1/2 px-8 relative">
+         <section>
            <h4>Jasmine</h4>
            <p class="opacity-50">
              Thank you, Nullvektor for consistently being so approachable and open-minded. Your friendly demeanor and willingness to listen and understand serve as a constant source of motivation. Your support and guidance have been especially meaningful to me during the recent account issue I encountered. Your willingness to assist and offer valuable advice speaks volumes about your character and the supportive environment you cultivate. I’m incredibly grateful to have someone like you. Your assistance played a crucial role in resolving my issues
            </p>
          </section>
-         <section class="tooltip no-hover no-focus no-focus-within absolute -slide-y left-0 top-0">
+         <hr class="opacity-50 border-0 bg-white mx-auto rounded-full p-0.5  w-1/2 my-3">
+         <section>
            <h4>Bianca</h4>
            <p class="opacity-50">
              Having someone like you who’s not only a great innovator but also pulls his best to get the work done so beautifully needs nothing but appreciation. Nullvektor Thanks for the well off work you consistently bring your all and I truly appreciate that. Thank you for making corporate life so smooth. Proud to have you on our team. Great work as always.
            </p>
          </section>
-         <section class="tooltip no-hover no-focus no-focus-within show -slide-y left-0 top-0">
+         <hr class="opacity-50 border-0 bg-white mx-auto rounded-full p-0.5 w-1/2 my-3">
+         <section>
            <h4>Thomas</h4>
            <p class="opacity-50">
              In the past year, I had noticed a significant change in my partner’s behavior. She was always spending too much time on the phone and she would try to hide it from me. After trying and failing to access the device, I tried Nullvektor and it turns out she was planning to run away from home with an older man she met on Snapchat. I confronted her about it and we talked about it. The man was arrested and I am lucky to have my partner with me. 
            </p>
          </section>
-       </main>
+         </main>
+         <!--
        	<aside class="[&>*]:align-middle [&>*]:rounded-inherit rounded-full [&>*]:relative">
-          <!--   section for controls and progress of showcases -->
           <button class="ripple border-current border p-0.5" onclick="Abbr.to(this,['nES','cL']).toggle('circle-paused'), qS('svg',!0,this).forEach(ch=>togl(ch,'show'))">
             <div class="relative h-full flex">
-							<!-- play icon -->
 							<svg fill="currentColor" viewBox="0 0 512 512" class="m-auto p-2 w-10 tooltip no-hover no-focus no-focus-within -slide">
                 <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"></path>
               </svg>
-							<!-- pause icon -->
-              <svg fill="currentColor" viewBox="0 0 448 512" class="p-3 m-auto w-10 absolute top-0 tooltip no-hover no-focus no-focus-within slide show">
+							<svg fill="currentColor" viewBox="0 0 448 512" class="p-3 m-auto w-10 absolute top-0 tooltip no-hover no-focus no-focus-within slide show">
                 <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
               </svg>
             </div>
@@ -411,27 +420,25 @@
             <main class="w-5/6 text-center inline-block [&>*]:relative [&>*]:rounded-full circle-pauseds" onclick="let btn=event.target, i=[].indexOf.call(this.children,btn), mckp=mockups[i]?.split(':'); if(btn.tagName!=='BUTTON') return; mckp[0], loadMockups(i,src=>{ })" onanimationiteration="let secs=Abbr.to(this,['pN', 'pES']), c=event.target, cs=qS(c.tagName.toLowerCase(), !0, this), j=cs.indexOf(c), n=Abbr.to(Abbr.to(c,['pN','pN','nES'],!0) || this, {3:'fEC'}); [c,n].forEach((el,i)=>Abbr.to(el,'cL')[cLs(i)]('path')), [qS('.show', 0, secs), (secs=secs.children)[j]].forEach(el=>togl(el, ['absolute', 'show']))">
             <button class="ripple">
               <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block mt-2.5 h-12 text-current">
-                <!-- Left Circle -->
                 <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32" class="path"></circle>
               </svg>
               <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
             </button>
             <button class="ripple">
               <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block mt-2.5 h-12 text-current">
-                <!-- Left Circle -->
                 <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" cy="32"></circle>
               </svg>
               <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
             </button>
             <button class="ripple">
               <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" stroke-width="5" viewBox="0 0 200 100" class="inline-block h-12 mt-2.5 text-current">
-                <!-- Left Circle -->
                 <circle fill="none" stroke="currentColor" stroke-width="inherit" r="30" cx="50%" style="animation-duration: 10s;" class="" cy="32"></circle>
               </svg>
               <span class="flex items-center justify-center absolute inset-0 text-2xl">•</span>
             </button>
           </main>
         </aside>
+        -->
      </main>
      <aside style="background-image: url('./noise.svg'); background-clip:text" class="text-transparent top-0 -mt-7 precise-typo-1 absolute opacity-70">
        NULL
