@@ -13,6 +13,7 @@
   
   <script src="/js/utils.js"></script>
   <script src="/js/ripples.js"></script>
+  <script src="/js/content.js"></script>
   
   <link rel="stylesheet" preload="true" href="/css/page.css">
   <link rel="stylesheet" href="/css/tailwind.min.css">
@@ -323,7 +324,7 @@
       <h2 class="mt-auto text-center text-3xl sm:text-5xl">
         KEY FEATURES
       </h2>
-      <section class="mb-auto [&>*]:p-2 flex sm:w-3/4 sm:mx-auto flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
+      <section class="break-all mb-auto [&>*]:p-2 flex sm:w-3/4 sm:mx-auto flex-wrap m-3 text-black [&>*]:rounded-inherit rounded-xl">
         <figure class='m-2 bg-white flex'>
           <div class="relative flex flex-col justify-between pr-3 mr-3">
             <div class="w-px h-full bg-gray-600 absolute right-0"></div>
@@ -525,6 +526,8 @@
     </nav>
     
   <script>
+   
+
     let loadImgs = (srcs, invk, all) => {
         let count = 0;
         srcs.forEach((src, img) => {
@@ -551,7 +554,12 @@
     
     let DOMLoaded, ratio;
     w_Ev_dom(_=>{
-      let html = document.documentElement;
+      let html = document.documentElement, call=_=>qS('#growShrink',!0).forEach((el,i)=>grow_shrink(el, innerWidth, i));
+      CMS.swap(),
+      // apply dynamism to  navigation after swapping content 
+      
+      setTimeout(_=>window.growShrink&&(call(), w_Ev_rz(call)), 200);
+   
       if(html.style.backdropFilter === undefined) html.style.setProperty('--bg-opacity-pad', 0.7);
       DOMLoaded = !0, animations.addRippleAnimations()
     })

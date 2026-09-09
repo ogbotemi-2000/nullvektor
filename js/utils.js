@@ -34,6 +34,17 @@ function save(blob, name, result) {
   }
 }
 
+  function asText(node, fn, txt='', _txt, cb, val) {
+    (cb=(nodes, flag, bool)=>slice(nodes).forEach((ch, res)=>{
+      res = ch.data || ch.value || '',
+      txt += bool = fn&&fn.call ? fn(ch) : res,
+      !bool&&ch.childNodes.length&&cb(ch.childNodes, !0)
+    }))(node.childNodes),
+    _txt = node.innerText,
+    val = _txt.length>txt.length ? txt : txt;
+    return txt;
+  }
+
 const Ev = ev=>node=>(cb, arg)=>/^on/.test(ev)?node[ev]=cb:node[node.attachEvent?'attachEvent':'addEventListener'](ev, cb, arg),
 lStore = (k,v=null, get, val)=>(window.localStorage)&&(val=localStorage[prop=((v&&~v)?'set':~v&&(get='get')||'remove')+'Item'](k, JSON.stringify(v)), get?JSON.parse(val):val/**to return true if supported */),
 Ev_many = (evs, node, common)=>evs.split(/\s+/).forEach(ev=>Ev(ev)(node)(common)),
@@ -110,8 +121,7 @@ function grow_shrink(el,e,ind,i,c,n,d,k, cls){
   }),d.dump[ind].replaceChild(/*d.cached[e]||*/c,d.dump[ind].firstChild)}
 
 w_Ev_dom(call=>{
-  call=_=>qS('#growShrink',!0).forEach((el,i)=>grow_shrink(el, innerWidth, i))
-  window.growShrink&&(call(), w_Ev_rz(call))
+  
 })
 
 
