@@ -25,6 +25,6 @@ let CMS = {
   swap: function() {
     let i = 0;
     asText(document.body, (el, txt)=>(el.nodeName == '#text' && el.parentNode.nodeName != 'SCRIPT' && (txt=el.data.trim()) && (el.data = this.de[i++]), el));
-
+    document.documentElement.setAttribute('lang', 'de')
   }
 }
